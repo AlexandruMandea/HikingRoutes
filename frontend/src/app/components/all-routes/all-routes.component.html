@@ -1,0 +1,25 @@
+<div class="all-routes-page">
+    <h1 class="title">Explore all routes</h1>
+
+    <app-search></app-search>
+
+    <ul>
+        <li *ngFor="let route of getRoutes()">
+            <app-route-card [route]="route"></app-route-card>
+        </li>
+    </ul>
+
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
+
+    <!-- <loading-spinner *ngIf="!finished()"></loading-spinner> -->
+
+    <!-- <div class="routes-container">
+        <app-route-card *ngFor="let route of getRoutes()" [route]="route"></app-route-card>
+    </div> -->
+
+    <div class="end-notification-container" *ngIf="finished()">
+        <div class="end-notification">
+            End of results. You can contribute by posting your own routes.
+        </div>
+    </div>
+</div>

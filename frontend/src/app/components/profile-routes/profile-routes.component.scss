@@ -1,0 +1,43 @@
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(205, 203, 250);
+    ;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(122, 119, 181);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #727bd0;
+}
+
+
+.routes-subheading {
+    font-size: 2rem;
+    margin-left: 3rem;
+    padding: 1.4rem;
+    color: #3a4079;
+}
+
+.routes {
+    padding: 2rem;
+}
+
+.media-scroller {
+    display: grid;
+    grid-auto-flow: column;
+
+    background-color: rgb(198, 196, 237);
+    border-radius: 1rem;
+
+    gap: 2rem;
+    grid-auto-columns: 26rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 2rem;
+}

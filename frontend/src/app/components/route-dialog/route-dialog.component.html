@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+    <h2>Give your route a title:</h2>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.routeTitle" placeholder="Route title">
+    </mat-form-field>
+
+    <br><br>
+
+    <mat-checkbox class="example-margin" [(ngModel)]="data.isPrivate" (change)="changeCheckbox($event)">Private route
+    </mat-checkbox>
+
+    <br><br>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onDiscardClick()">Discard</button>
+    <button mat-button [mat-dialog-close]="data" [disabled]="isTitleTooShort()">Save route</button>
+</div>

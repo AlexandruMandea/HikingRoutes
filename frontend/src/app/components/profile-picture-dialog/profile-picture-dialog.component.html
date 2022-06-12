@@ -1,0 +1,30 @@
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col">
+            <div class="card-panel">
+                <h2>Change profile picture</h2>
+            </div>
+
+            <form #imageForm=ngForm>
+                <div class="form-div">
+                    <div class="image-container">
+                        <img [src]="getImageUrl()" alt="Upload an image" *ngIf="isFileTypeValid()">
+                        <div class="image-placeholder" *ngIf="!isFileTypeValid()">Image preview</div>
+                    </div>
+                    <input type="file" #image accept="image/*" (change)="handleFileInput($event)">
+                </div>
+            </form>
+
+            <div class="error" *ngIf="isFileFormatWrong()">
+                Wrong file format.
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onDiscardClick()">Discard</button>
+    <button mat-button [mat-dialog-close]="data" [disabled]="!isFileTypeValid()">Save</button>
+</div>

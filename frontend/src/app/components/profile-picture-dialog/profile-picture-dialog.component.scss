@@ -1,0 +1,52 @@
+img {
+    height: 15rem;
+    width: 15rem;
+    object-fit: cover;
+}
+
+.image-container {
+    height: 15.8rem;
+    width: 15.8rem;
+    border: .4rem solid #5b639c;
+    margin-bottom: 2rem;
+}
+
+.image-placeholder {
+    color: darkgrey;
+    margin-top: 45%;
+    font-size: 1.4rem;
+}
+
+input {
+    width: 55%;
+}
+
+.form-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto auto;
+    padding: 2rem;
+}
+
+.mat-dialog-content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 29.5rem;
+    width: 27rem;
+    padding: 1rem;
+}
+
+.mat-dialog-actions {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+}
+
+.error {
+    color: darkred;
+}

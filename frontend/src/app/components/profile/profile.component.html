@@ -1,0 +1,29 @@
+<div class="profile-page">
+    <div class="upper-part">
+        <div class="user-info">
+            <img class="profile-pic" src="{{getUserProfilePicture()}}" alt="No preview"
+                (click)="openProfilePicDialog()">
+
+            <div class="name">
+                <div>{{getUserName()}}</div>
+            </div>
+
+            <!-- <div class="follow-div">
+                <button class="follow-button" *ngIf="!isThisMyProfile()">Follow</button>
+                <button class="follow-button" *ngIf="!isThisMyProfile()">Unfollow</button>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="navigator">
+        <div class="routes-button" (click)="goToRoutes()">
+            Routes
+        </div>
+
+        <div class="stats-button" (click)="goToStats()">
+            Stats
+        </div>
+    </div>
+
+    <ng-container *ngComponentOutlet="getPage()"></ng-container>
+</div>

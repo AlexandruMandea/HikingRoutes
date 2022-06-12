@@ -1,0 +1,108 @@
+<div class="body-content">
+    <div class="route-config-div">
+        <div class="map-io-panel">
+            <h1 class="description">Create your journey</h1>
+
+            <br>
+
+            <div class="form-block">
+                <form id="form" [formGroup]="getOriginAndDestinationForm()" (ngSubmit)="viewRoute()">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input matInput (keyup)="onKeyUpEnter($event)" formControlName="origin" type="text" #origin
+                                placeholder="Origin" class="form-control">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input matInput (keyup)="onKeyUpEnter($event)" formControlName="destination" type="text"
+                                #destination placeholder="Destination" class="form-control">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select travel mode</mat-label>
+                            <mat-select #mode (change)="changeTravelMode($event)">
+                                <mat-option value="BICYCLING">Bicycling</mat-option>
+                                <mat-option value="WALKING">Walking</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div> -->
+
+                    <br>
+                    <br>
+
+                    <select #mode (change)="changeTravelMode(mode.value)" [value]="getTravelMode()">
+                        <option class="select-option" value="BICYCLING">Bicycling</option>
+                        <option class="select-option" value="WALKING">Walking</option>
+                    </select>
+
+                    <br>
+                    <br>
+
+                    <button #submit class="submit-btn" type="submit">See route</button>
+                </form>
+            </div>
+
+            <br>
+
+            <button id="saveRoute" *ngIf="isUserAuthenticated()" (click)="openRouteDialog()"
+                [disabled]="!canRouteBeSaved()">
+                Save route
+            </button>
+
+            <div class="chart">
+                <canvas #myChart></canvas>
+            </div>
+        </div>
+
+        <!-- baseChart [dataSets]="getChartData()" [labels]="getChartLabels()"
+                [options]="getChartOptions()" [legend]="getChartLegend()" [chartType]="getChartType()" -->
+
+        <div class="map-container">
+            <button #btnCustomRoute (click)="enableCustomRoute()" *ngIf="!isCustomRouteEnabled()"
+                class="btn-custom-route">
+                Custom route
+            </button>
+
+            <button #btnCloseCustomRoute (click)="closeCustomRoute()" *ngIf="isCustomRouteEnabled()"
+                class="btn-close-custom-route">
+                Close custom route
+            </button>
+
+            <button #btnClearWaypoints (click)="clearWaypoints()" class="btn-clear-waypoints">
+                Clear waypoints
+            </button>
+
+            <div #map class="map"></div>
+
+            <!-- <agm-map [latitude]="getInitLatitude()" [longitude]="getInitLongitude()" [zoom]="getInitZoom()"
+            (mapClick)="onMapClick($event)" [disableDefaultUI]="true" [maxZoom]="15">
+            <agm-bicycling-layer>
+                <agm-marker *ngFor="let marker of getMarkers(); let i = index" [latitude]="marker.position.lat"
+                    [longitude]="marker.position.lng" [markerDraggable]="true" [markerClickable]="true"
+                    (markerClick)="onMarkerClick(marker, i)" (dragEnd)="onMarkerDragEnd($event, marker, i)">
+                </agm-marker>
+
+                <agm-direction id="direction-selector" *ngIf="canDrawRoute()" [origin]="getOriginPoint()"
+                    [destination]="getDestinationPoint()" [waypoints]="getWaypoints()"
+                    [renderOptions]="{suppressMarkers: true}" [travelMode]="getTravelMode()">
+                </agm-direction>
+            </agm-bicycling-layer>
+        </agm-map> -->
+        </div>
+
+    </div>
+
+    <div class="route-results">
+        <h3 class="first-result" *ngIf="getRouteDistance()!==0">Distance: {{getRouteDistance()}} km</h3>
+        <h3 *ngIf="getRouteDuration()!==''">Duration: {{getRouteDuration()}}</h3>
+        <h3 *ngIf="getMetersToClimb()!==0">Meters to climb: {{getMetersToClimb()}} m</h3>
+        <h3 *ngIf="getMetersToDescend()!==0">Meters to descend: {{getMetersToDescend()}} m</h3>
+        <h3 class="last-result" *ngIf="getRouteWarnings()!==''">Warnings: {{getRouteWarnings()}}</h3>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

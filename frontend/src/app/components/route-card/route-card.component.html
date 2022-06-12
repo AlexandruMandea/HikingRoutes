@@ -1,0 +1,138 @@
+<div class="route-card">
+    <div class="map-frame">
+        <img class="map-image" [src]="getStaticMapImageSrc()" alt="No preview available." (click)="useRouteAsTemplate()"
+            routerLink="/map">
+    </div>
+
+    <div class="route-info-div">
+        <div class="title">
+            <div class="title-text">
+                {{getRouteTitle()}}
+            </div>
+            <img class="profile-pic" [src]="getCreatorSProfilePic()" alt="No preview available."
+                routerLink="/profile/user-id/{{getCreatorSId()}}">
+        </div>
+
+        <div class="route-info-footer">
+            <div class="distance">
+                <span>
+                    ↝
+                </span>
+                {{getRouteDistance()}} km
+            </div>
+            <div class="duration">
+                <span>
+                    <mat-icon>timer</mat-icon>
+                    <!-- 🕒 -->
+                    <!-- &#x23F3; -->
+                </span>
+                {{getRouteDuration()}}
+            </div>
+            <div class="travel-mode">
+                <mat-icon>directions</mat-icon>
+                {{getRouteTravelMode()}}
+            </div>
+            <div class="region">
+                <mat-icon> place</mat-icon>
+                {{getRouteRegion()}}
+            </div>
+        </div>
+        <div class="actions">
+            <span class="favorite">
+                <button mat-button class="icon" *ngIf="isLiked()" [disabled]="!isAuthenticated()" color="warn"
+                    (click)="removeFromFavorites()">
+                    <mat-icon aria-hidden="true" aria-label="Add to/Remove from favorites" color="warn">favorite
+                    </mat-icon>
+                    {{getNoOfLikes()}}
+                </button>
+            </span>
+
+            <span class="favorite">
+                <button mat-button class="icon" *ngIf="!isLiked()" [disabled]="!isAuthenticated()" color="warn"
+                    (click)="addToFavorites()">
+                    <mat-icon aria-hidden="true" aria-label="Add to/Remove from favorites" color="warn">
+                        favorite_outline
+                    </mat-icon>
+                    {{getNoOfLikes()}}
+                </button>
+            </span>
+
+            <span class="travelled">
+                <button mat-button class="travelled-icon" *ngIf="isAuthenticated()&&isTravelled()"
+                    (click)="removeFromTravelled()">
+                    <mat-icon aria-hidden="true" aria-label="Add to/Remove from travelled">check
+                    </mat-icon>
+                    Travelled
+                </button>
+            </span>
+
+            <span class="not-travelled">
+                <button mat-button class="not-travelled-icon" *ngIf="isAuthenticated()&&!isTravelled()"
+                    (click)="addToTravelled()">
+                    <mat-icon aria-hidden="true" aria-label="Add to/Remove from travelled">library_add
+                    </mat-icon>
+                    Travel
+                </button>
+            </span>
+
+            <span class="visible">
+                <button mat-icon-button class="icon" *ngIf="!isPrivate()&&isMine()" (click)="makePrivate()">
+                    <mat-icon aria-hidden="false" aria-label="Add to/Remove from favorites">visibility
+                    </mat-icon>
+                </button>
+            </span>
+
+            <span class="not-visible">
+                <button mat-icon-button class="icon" *ngIf="isPrivate()&&isMine()" (click)="makePublic()">
+                    <mat-icon aria-hidden="false" aria-label="Add to/Remove from favorites">
+                        visibility_off
+                    </mat-icon>
+                </button>
+            </span>
+
+            <button class="delete" mat-button (click)="deleteRoute()" *ngIf="isMine()">
+                <mat-icon aria-hidden="true" aria-label="Delete">delete</mat-icon>
+                Delete
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- <div class="route-info-div">
+        <h1>{{getRouteTitle()}}</h1>
+        <p>Distance(icon): {{getRouteDistance()}} km</p>
+        <p>Duration(icon): {{getRouteDuration()}}</p>
+        <p>{{getRouteTravelMode()}}</p>
+        <p>{{getRouteRegion()}}</p>
+
+        <div class="route-actions">
+            <button mat-button class="fav-icon" *ngIf="isLiked()" [disabled]="!isAuthenticated()" color="warn"
+                (click)="removeFromFavorites()">
+                <mat-icon aria-hidden="true" aria-label="Add to/Remove from favorites" color="warn">favorite</mat-icon>
+                {{getNoOfLikes()}}
+            </button>
+
+            <button mat-button class="fav-icon" *ngIf="!isLiked()" [disabled]="!isAuthenticated()" color="warn"
+                (click)="addToFavorites()">
+                <mat-icon aria-hidden="true" aria-label="Add to/Remove from favorites" color="warn">favorite_outline
+                </mat-icon>
+                {{getNoOfLikes()}}
+            </button> -->
+
+    <!-- <div *ngIf="!isAuthenticated()">
+                <mat-icon aria-hidden="true" aria-label="Add to/Remove from favorites" color="warn">favorite_outline
+                </mat-icon>{{getNoOfLikes()}}
+            </div> -->
+
+    <!-- <button class="open-icon" mat-button (click)="useRouteAsTemplate()" routerLink="/map">
+                <mat-icon aria-hidden="true" aria-label="Use as template">launch_outline</mat-icon>
+                Use as template
+            </button>
+        </div>
+    </div> -->
+
+</div>

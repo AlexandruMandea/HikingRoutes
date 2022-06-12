@@ -1,0 +1,31 @@
+<div class="form-container">
+    <form [formGroup]="getLoginForm()" (ngSubmit)="onLogin()">
+        <div class="container">
+            <br>
+
+            <h1>Login</h1>
+
+            <small class="error" *ngIf="areCredentialsWrong()">Wrong credentials.</small>
+
+            <mat-form-field>
+                <input matInput formControlName="email" placeholder="Email">
+                <mat-hint *ngIf="getLoginForm().controls['email'].errors">Email is required!</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="password" type="password" placeholder="Password">
+                <mat-hint *ngIf="getLoginForm().controls['password'].errors">Password cannot be empty!</mat-hint>
+            </mat-form-field>
+
+            <br>
+
+            <button mat-flat-button color="primary" type="submit">Login</button>
+
+            <br>
+
+            <div class="register-alternative-div">
+                <p>Don't have an account? <a href="/register">Register here.</a></p>
+            </div>
+        </div>
+    </form>
+</div>

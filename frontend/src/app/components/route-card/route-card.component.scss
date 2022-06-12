@@ -1,0 +1,195 @@
+// https://codepen.io/marc-simplon/pen/xoKYbJ?editors=1100
+
+.route-card {
+    height: 28rem;
+    width: 25rem;
+    border: 1px solid #5b639c;
+    border-radius: .5rem;
+    margin: .7rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: #2965e7;
+    background-color: rgb(209, 206, 241);
+    box-shadow: 0 .5rem 1.9rem rgba(0, 0, 0, 0.5);
+    transition: 0.2s;
+
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    // display: flex;
+    // background-color: rgb(200, 217, 249);
+    // width: 40rem;
+    // border-radius: .5rem;
+    // border: 2px solid #777;
+}
+
+.route-card:hover {
+    transform: scale(1.04)
+}
+
+.map-frame {
+    height: 100%;
+    height: 15rem;
+    width: 15rem;
+    border-radius: .3rem;
+}
+
+#map {
+    height: 100%;
+    border-radius: .3rem;
+}
+
+.map-image {
+    height: 15rem;
+    width: 25rem;
+    border-radius: .3rem;
+    border-bottom: 1px solid #868fd8;
+    cursor: pointer;
+}
+
+.profile-pic {
+    cursor: pointer;
+}
+
+.map-image:hover {
+    opacity: 0.9;
+}
+
+.route-info-div {
+    padding: .9rem;
+    padding-left: 1.2rem;
+    padding-bottom: 0;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.title {
+    overflow: hidden;
+    text-overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+}
+
+.title img {
+    height: 2rem;
+    width: 2rem;
+    object-fit: cover;
+    border-radius: 10rem;
+    border: .1rem solid #535b92;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.title-text {
+    font-size: 1.5rem;
+    padding-top: .1rem;
+    padding-bottom: .6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: .3rem;
+}
+
+.actions {
+    margin-top: .35rem;
+    width: 100%;
+}
+
+.icon {
+    margin-left: 0rem;
+}
+
+.icon mat-icon {
+    margin-bottom: .4rem;
+}
+
+.travelled-icon {
+    color: green;
+    margin: auto auto;
+}
+
+.delete {
+    color: #555;
+    float: right;
+    margin-right: 0% 0 0% 0%;
+}
+
+.delete mat-icon {
+    margin-bottom: .4rem;
+}
+
+.delete:hover {
+    color: rgb(203, 0, 0);
+}
+
+.travelled mat-icon {
+    margin-bottom: .4rem;
+}
+
+.not-travelled mat-icon {
+    margin-bottom: .4rem;
+}
+
+.visible .icon:hover {
+    background-color: #c5c3d4;
+}
+
+.not-visible .icon:hover {
+    background-color: #c5c3d4;
+}
+
+// .travelled,
+// .not-travelled {
+//     float: right;
+//     margin-right: 0% 0 0% 0%;
+// }
+
+.distance {
+    margin-top: .7rem;
+}
+
+.distance span {
+    padding-left: .1rem;
+    padding-right: .2rem;
+}
+
+.duration mat-icon {
+    margin-right: -.2rem;
+    font-size: 1rem;
+}
+
+.region mat-icon {
+    margin-right: -.2rem;
+    font-size: 1rem;
+}
+
+.travel-mode {
+    text-transform: capitalize;
+}
+
+.travel-mode mat-icon {
+    margin-right: -.2rem;
+    font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+    .route-card {
+        height: 30.7rem;
+        width: 25.2rem;
+    }
+
+    .actions button {
+        font-size: .8rem;
+    }
+
+    .actions button mat-icon {
+        font-size: 1.55rem;
+    }
+
+    .distance span {
+        padding-left: .1rem;
+        padding-right: .55rem;
+    }
+}

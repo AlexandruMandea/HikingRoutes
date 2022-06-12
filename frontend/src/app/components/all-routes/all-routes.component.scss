@@ -1,0 +1,50 @@
+.all-routes-page {
+    background-color: rgb(180, 178, 226);
+}
+
+.title {
+    font-size: 3rem;
+    padding: 3rem;
+    text-align: center;
+    color: #3a4079;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    column-gap: 4rem;
+    list-style-type: none;
+    padding: 4rem;
+}
+
+// .routes-container {
+//     display: flex;
+//     grid-auto-rows: auto;
+//     max-width: 100%;
+//     padding: 2rem;
+//     flex-wrap: wrap;
+//     row-gap: 2rem;
+//     column-gap: 2rem;
+//     justify-content: center;
+// }
+
+.end-notification-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+.end-notification {
+    background-color: #5b639c;
+    padding: 1rem;
+    border-radius: .3rem;
+    width: 80%;
+    max-width: 40rem;
+    color: whitesmoke;
+    margin: auto;
+}

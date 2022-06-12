@@ -1,0 +1,223 @@
+.body-content {
+    background-color: rgb(180, 178, 226);
+}
+
+.route-config-div {
+    display: flex;
+}
+
+h1 {
+    margin-top: .5rem;
+    color: #3c437d;
+}
+
+.map-io-panel {
+    width: 30%;
+    min-width: 20rem;
+    padding: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid #5b639c;
+    border-right: none;
+    height: 38.5rem;
+}
+
+.map-io-panel button {
+    padding: .5rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 5rem;
+    background-color: #2965e7;
+    color: whitesmoke;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+#saveRoute:disabled {
+    opacity: .7;
+    cursor: default;
+}
+
+.map-io-panel button:hover {
+    opacity: .85;
+}
+
+input,
+mat-form-field {
+    width: 80%;
+}
+
+.form-block {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.form-group {
+    width: 100%;
+}
+
+select {
+    // -webkit-appearance: none;
+    // -moz-appearance: none;
+    // -ms-appearance: none;
+    // appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    background: #5b639c;
+    background-image: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+select {
+    width: 12rem;
+    height: 2.3rem;
+    background: #5b639c;
+    border-radius: .25rem;
+    color: #fff;
+    cursor: pointer;
+    padding: 0 .5rem;
+    line-height: 2rem;
+}
+
+.chart {
+    margin-top: 1rem;
+}
+
+// select::after {
+//     content: '';
+//     border-width: 5px;
+//     border-style: solid;
+//     border-color: transparent;
+//     border-top-color: #fff;
+//     display: inline-block;
+//     position: absolute;
+//     right: .1rem;
+//     bottom: .1rem;
+//     border-radius: 2px;
+// }
+
+// select {
+//     flex: 1;
+//     padding: 0 .5rem;
+//     color: #fff;
+//     cursor: pointer;
+// }
+
+// .select::after {
+//     // content: '\25BC';
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     padding: 0 .5rem;
+//     cursor: pointer;
+//     pointer-events: none;
+//     transition: .25s all ease;
+// }
+
+// .select:hover::after {
+//     color: #fff;
+// }
+
+.map-container {
+    width: 70%;
+    border: 3px solid #5b639c;
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+}
+
+.btn-custom-route {
+    position: absolute;
+    z-index: 1;
+    margin-left: 2rem;
+    margin-top: 6.5rem;
+    border-radius: .3rem;
+    visibility: visible;
+    cursor: pointer;
+}
+
+.btn-close-custom-route {
+    position: absolute;
+    z-index: 1;
+    margin-left: 2rem;
+    margin-top: 6.5rem;
+    border-radius: .3rem;
+    visibility: visible;
+    cursor: pointer;
+}
+
+.btn-clear-waypoints {
+    position: absolute;
+    z-index: 1;
+    margin-left: 2rem;
+    margin-top: 8.5rem;
+    border-radius: .3rem;
+    cursor: pointer;
+}
+
+.route-results {
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: -4rem;
+    color: #3c437d;
+}
+
+.last-result {
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 45rem) {
+    .route-config-div {
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .map-io-panel {
+        border-right: 3px solid #5b639c;
+        width: 80%;
+        background-color: rgb(198, 196, 237);
+    }
+
+    .map-container {
+        height: 40.35rem;
+        width: 80%;
+        min-width: 20rem;
+    }
+
+    .map {
+        height: 40rem;
+    }
+
+    .btn-custom-route {
+        margin-left: none;
+        margin-left: 1rem;
+    }
+
+    .btn-close-custom-route {
+        margin-left: none;
+        margin-left: 1rem;
+    }
+
+    .btn-clear-waypoints {
+        margin-left: none;
+        margin-left: 1rem;
+    }
+
+    .chart {
+        max-width: 27rem;
+        margin: auto auto;
+    }
+}

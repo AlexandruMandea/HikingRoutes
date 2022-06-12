@@ -1,0 +1,102 @@
+.profile-page {
+    background-color: rgb(180, 178, 226);
+}
+
+.upper-part {
+    padding: 2rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+
+    background-color: rgb(198, 196, 237);
+    border-radius: 1rem;
+
+    overflow: hidden;
+    text-overflow: hidden;
+    white-space: nowrap;
+}
+
+.profile-pic {
+    height: 12rem;
+    width: 12rem;
+    object-fit: cover;
+    border-radius: 10rem;
+    border: .4rem solid #5b639c;
+    cursor: pointer;
+    margin-left: 3rem;
+}
+
+.profile-pic:hover {
+    opacity: .87;
+}
+
+.name {
+    font-size: 2.4rem;
+    color: #3a4079;
+    padding: 5rem 2rem;
+}
+
+.name div {
+    text-overflow: ellipsis;
+}
+
+.navigator {
+    display: flex;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: whitesmoke;
+    max-width: 60rem;
+    margin: auto auto;
+}
+
+.routes-button {
+    background-color: rgb(122, 119, 181);
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    padding: 1rem;
+    width: 50%;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-right: 2px solid #565b98;
+}
+
+.routes-button:hover {
+    opacity: .85;
+}
+
+.stats-button {
+    background-color: rgb(122, 119, 181);
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 1rem;
+    width: 50%;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-right: 2px solid #565b98;
+}
+
+.stats-button:hover {
+    opacity: .7;
+}
+
+@media (max-width: 840px) {
+    .user-info {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+
+    .name {
+        white-space: wrap;
+    }
+
+    .profile-pic {
+        margin-left: 0;
+    }
+}

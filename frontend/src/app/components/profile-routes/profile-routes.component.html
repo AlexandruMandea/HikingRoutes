@@ -1,0 +1,22 @@
+<div class="routes">
+    <div class="routes-subheading">
+        Created routes
+    </div>
+    <div class="media-scroller">
+        <app-route-card *ngFor="let route of getCreatedRoutes()" [route]="route"></app-route-card>
+    </div>
+
+    <div class="routes-subheading">
+        Liked routes
+    </div>
+    <div class="media-scroller">
+        <app-route-card *ngFor="let route of getLikedRoutes()" [route]="route"></app-route-card>
+    </div>
+
+    <div class="routes-subheading">
+        Travelled routes
+    </div>
+    <div class="media-scroller">
+        <app-route-card *ngFor="let route of getTravelledRoutes()" [route]="route"></app-route-card>
+    </div>
+</div>

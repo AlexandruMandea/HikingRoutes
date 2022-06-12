@@ -1,0 +1,40 @@
+<header>
+    <div class="container">
+        <nav>
+            <a class="logo" routerLink="/">
+                <span class="material-icons">pedal_bike</span>
+                Hiking Routes
+            </a>
+
+            <ul>
+                <li>
+                    <a routerLink="/browse-routes">Explore</a>
+                </li>
+
+                <li>
+                    <a routerLink="/map">Map</a>
+                </li>
+
+                <li *ngIf="!isLoggedIn()">
+                    <a routerLink="/login">Login</a>
+                </li>
+
+                <li *ngIf="isLoggedIn()">
+                    <button class="user-menu-button" mat-button [matMenuTriggerFor]="userMenu">
+                        <img class="profile-pic" src="{{getLoggedInUserProfilePicture()}}" alt="no_preview">
+                        &nbsp;{{getLoggedInUserName()}}
+                        <mat-icon>arrow_drop_down</mat-icon>
+                    </button>
+
+                    <mat-menu class="user-menu" #userMenu="matMenu">
+                        <button class="user-menu-item" mat-menu-item (click)="navigateToProfile()">Profile</button>
+                        <!-- <button class="user-menu-item" mat-menu-item (click)="navigateToSettings()">Settings</button> -->
+                        <button class="user-menu-item" mat-menu-item (click)="logout()">Logout</button>
+                        <button class="user-menu-item" mat-menu-item *ngIf="isUserAdmin()"
+                            (click)="navigateToAdmin()">Administrator</button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

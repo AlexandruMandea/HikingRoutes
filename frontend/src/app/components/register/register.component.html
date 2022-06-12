@@ -1,0 +1,49 @@
+<div class="form-container">
+    <form [formGroup]="getRegisterForm()" (ngSubmit)="onRegister()">
+
+        <div class="container">
+            <br>
+
+            <h1>Register</h1>
+
+            <small class="error" *ngIf="getRegisterForm().hasError('passwordsDontMatch')">Passwords don't match.</small>
+            <small class="error" *ngIf="isEmailAlreadyUsed()">This email is already used.</small>
+
+            <mat-form-field>
+                <input matInput formControlName="name" placeholder="Name">
+                <mat-hint *ngIf="getRegisterForm().controls['name'].errors">Name must have between 2 and 25 characters.
+                </mat-hint>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput formControlName="email" placeholder="Email">
+                <mat-hint *ngIf="getRegisterForm().controls['email'].errors">This must be a valid email format.
+                </mat-hint>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput formControlName="password" type="password" placeholder="Password">
+                <mat-hint *ngIf="getRegisterForm().controls['password'].errors">Password must contain at least 8
+                    characters and at least 1 number or special character.
+                </mat-hint>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput formControlName="confirmPassword" type="password" placeholder="Confirm password">
+                <mat-hint *ngIf="getRegisterForm().controls['confirmPassword'].errors">Please confirm password.
+                </mat-hint>
+            </mat-form-field>
+
+            <br>
+
+            <button mat-flat-button color="primary" type="submit">Register</button>
+
+            <br>
+
+            <div class="login-alternative-div">
+                <p>Already have an account? <a href="/login">Login here.</a></p>
+            </div>
+        </div>
+
+    </form>
+</div>
