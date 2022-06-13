@@ -1,4 +1,5 @@
 import { UserRole } from "src/app-constants.env";
+import { Follower } from "src/modules/followers/model/follower-interface";
 import { Route } from "src/modules/routes/models/route-interface";
 
 export interface User {
@@ -13,6 +14,8 @@ export interface User {
     createdRoutes?: Route[];
     favouriteRoutes?: Route[];
     travelledRoutes?: Route[];
+    followings?: Follower[];
+    followers?: Follower[];
     createdAt?: string;
     updatedAt?: string;
 

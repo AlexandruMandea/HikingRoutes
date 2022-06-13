@@ -1,4 +1,5 @@
 import { UserRole } from "src/app-constants.env";
+import { FollowerEntity } from "src/modules/followers/model/follower-entity";
 import { RouteEntity } from "src/modules/routes/models/route-entity";
 import { SALT } from "src/secrets.env";
 import { BeforeInsert, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
@@ -63,6 +64,12 @@ export class UserEntity {
         }
     })
     travelledRoutes: RouteEntity[];
+
+    @OneToMany(() => FollowerEntity, follows => follows.follower)
+    followings: FollowerEntity[];
+
+    @OneToMany(() => FollowerEntity, follows => follows.following)
+    followers: FollowerEntity[];
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: string;

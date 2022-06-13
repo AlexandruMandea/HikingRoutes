@@ -43,6 +43,44 @@
     text-overflow: ellipsis;
 }
 
+.follow-div {
+    width: 100%;
+    padding-top: 4.35rem;
+    padding-right: 1rem;
+}
+
+.follow-button {
+    margin-right: 0;
+    float: right;
+    vertical-align: middle;
+    background-color: rgb(122, 119, 181);
+    color: whitesmoke;
+    padding: .7rem 1.5rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.unfollow-button {
+    margin-right: 0;
+    float: right;
+    vertical-align: middle;
+    background-color: rgb(122, 119, 181);
+    color: whitesmoke;
+    padding: .7rem 1.5rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.follow-button:hover {
+    opacity: .85;
+}
+
+.unfollow-button:hover {
+    opacity: .85;
+}
+
 .navigator {
     display: flex;
     padding-left: 2rem;
@@ -52,36 +90,39 @@
     margin: auto auto;
 }
 
-.routes-button {
+.navigator div {
     background-color: rgb(122, 119, 181);
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
     padding: 1rem;
-    width: 50%;
+    width: 25%;
     text-align: center;
     font-size: 1.2rem;
     cursor: pointer;
-    border-right: 2px solid #565b98;
 }
 
-.routes-button:hover {
+.navigator div:hover {
     opacity: .85;
 }
 
-.stats-button {
-    background-color: rgb(122, 119, 181);
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    padding: 1rem;
-    width: 50%;
-    text-align: center;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-right: 2px solid #565b98;
+.routes-button {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-right: 1px solid #565b98;
 }
 
-.stats-button:hover {
-    opacity: .7;
+.followers-button {
+    border-right: 1px solid #565b98;
+    border-left: 1px solid #565b98;
+}
+
+.followings-button {
+    border-left: 1px solid #565b98;
+    border-right: 1px solid #565b98;
+}
+
+.stats-button {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-left: 1px solid #565b98;
 }
 
 @media (max-width: 840px) {

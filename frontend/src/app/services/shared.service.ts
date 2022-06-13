@@ -6,15 +6,16 @@ import { User } from '../components/login/model/user-interface';
 })
 export class SharedService {
 
+  private user: User | undefined;
   private userId: string = '';
 
   constructor() { }
 
-  getUserId() {
-    return this.userId;
-  }
+  getUserId() { return this.userId; }
 
-  setUserId(id: string) {
-    this.userId = id;
-  }
+  setUserId(id: string) { this.userId = id; }
+
+  getUser() { return this.user; }
+
+  setUser(user: User | undefined) { this.user = user; }
 }

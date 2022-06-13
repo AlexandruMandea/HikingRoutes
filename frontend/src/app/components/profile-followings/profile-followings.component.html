@@ -1,0 +1,5 @@
+<div class="followings-page">
+    <div class="following" *ngFor="let user of getFollowings()">
+        <app-user-preview [user]="user"></app-user-preview>
+    </div>
+</div>

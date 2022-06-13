@@ -11,6 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
 import { JwtAuthGuard } from './modules/authentication/jwt-strategies/jwt-guard';
 import { APP_GUARD, Reflector } from '@nestjs/core';
+import { FollowersModule } from './modules/followers/followers.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { APP_GUARD, Reflector } from '@nestjs/core';
     ConfigModule.forRoot({ isGlobal: true }),
     MulterModule.register({
       dest: './images/profile_pictures',
-    })],
+    }),
+    FollowersModule],
   controllers: [AppController],
   providers: [
     AppService,

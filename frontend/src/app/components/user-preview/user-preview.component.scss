@@ -1,0 +1,26 @@
+.user-preview {
+    display: flex;
+    padding: 1rem;
+    padding-left: 3rem;
+    background-color: rgb(198, 196, 237);
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+
+.pic img {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 10rem;
+    border: .4rem solid #5b639c;
+    cursor: pointer;
+}
+
+.name {
+    padding-left: 2rem;
+    font-size: 1.7rem;
+    color: #3a4079;
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+}

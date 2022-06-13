@@ -56,6 +56,8 @@ export class ProfileStatsComponent implements OnInit {
   }
 
   getTotalDistanceRidden() {
+    this.checkForNewUserProfile();
+
     return this.totalDistanceRidden;
   }
 
@@ -103,6 +105,20 @@ export class ProfileStatsComponent implements OnInit {
             //this.getRouteElevation(points, TravelMode.WALKING);
 
             break
+        }
+      });
+    }
+  }
+
+
+
+  checkForNewUserProfile() {
+    if (this.userId !== this.sharedService.getUserId()) {
+      this.userId = this.sharedService.getUserId();
+
+      this.getUserById().subscribe({
+        next: (user: User) => {
+          this.user = user;
         }
       });
     }

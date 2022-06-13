@@ -38,6 +38,9 @@ import { ProfilePictureDialogComponent } from './components/profile-picture-dial
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { ProfileRoutesComponent } from './components/profile-routes/profile-routes.component';
 import { ProfileStatsComponent } from './components/profile-stats/profile-stats.component';
+import { ProfileFollowingsComponent } from './components/profile-followings/profile-followings.component';
+import { ProfileFollowersComponent } from './components/profile-followers/profile-followers.component';
+import { UserPreviewComponent } from './components/user-preview/user-preview.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,9 @@ import { ProfileStatsComponent } from './components/profile-stats/profile-stats.
     DeleteDialogComponent,
     ProfileRoutesComponent,
     ProfileStatsComponent,
+    ProfileFollowingsComponent,
+    ProfileFollowersComponent,
+    UserPreviewComponent,
   ],
   imports: [
     BrowserModule,

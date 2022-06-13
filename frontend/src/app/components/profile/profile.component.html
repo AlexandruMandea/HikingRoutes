@@ -8,16 +8,26 @@
                 <div>{{getUserName()}}</div>
             </div>
 
-            <!-- <div class="follow-div">
-                <button class="follow-button" *ngIf="!isThisMyProfile()">Follow</button>
-                <button class="follow-button" *ngIf="!isThisMyProfile()">Unfollow</button>
-            </div> -->
+            <div class="follow-div">
+                <button class="follow-button" *ngIf="!isThisMyProfile()&&isAuthenticated()&&!doIFollow()"
+                    (click)="follow()">Follow</button>
+                <button class="unfollow-button" *ngIf="!isThisMyProfile()&&isAuthenticated()&&doIFollow()"
+                    (click)="unfollow()">Unfollow</button>
+            </div>
         </div>
     </div>
 
     <div class="navigator">
         <div class="routes-button" (click)="goToRoutes()">
             Routes
+        </div>
+
+        <div class="followings-button" (click)="goToFollowings()">
+            Followings
+        </div>
+
+        <div class="followers-button" (click)="goToFollowers()">
+            Followers
         </div>
 
         <div class="stats-button" (click)="goToStats()">

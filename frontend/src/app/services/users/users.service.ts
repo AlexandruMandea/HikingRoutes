@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
+import { Follower } from 'src/app/components/login/model/follower-interface';
 import { User } from 'src/app/components/login/model/user-interface';
-import { baseServerUsersUrl } from 'src/environments/app-constants';
+import { baseServerFollowersUrl, baseServerUsersUrl } from 'src/environments/app-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,21 @@ export class UsersService {
     formData.append('file', image);
 
     return this.http.post<any>(`${baseServerUsersUrl}/upload-profile-picture`, formData);
+  }
+
+  follow(userId: string) {
+    return this.http.post<Follower>(`${baseServerFollowersUrl}/follow/${userId}`, {});
+  }
+
+  unfollow(userId: string) {
+    return this.http.delete<any>(`${baseServerFollowersUrl}/unfollow/${userId}`, {});
+  }
+
+  getFollower(followsId: number) {
+    return this.http.get<User>(`${baseServerFollowersUrl}/get-follower-as-user/${followsId}`);
+  }
+
+  getFollowing(followsId: number) {
+    return this.http.get<User>(`${baseServerFollowersUrl}/get-following-as-user/${followsId}`);
   }
 }

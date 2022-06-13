@@ -98,7 +98,7 @@ export class UsersService {
     }
 
     getUserByID(id: string, request: Request | undefined) {
-        return from(this.usersRepository.findOne({ id: id }, { relations: ['createdRoutes', 'favouriteRoutes', 'travelledRoutes'] })).pipe(
+        return from(this.usersRepository.findOne({ id: id }, { relations: ['createdRoutes', 'favouriteRoutes', 'travelledRoutes', 'followings', 'followers'] })).pipe(
             map((user: User) => {
                 const { password, salt, ...securedUser } = user;
                 if (request.user === undefined || id !== request.user['id']) {
@@ -119,7 +119,7 @@ export class UsersService {
 
     getUserByEmail(email: string) {
         email = email.toLowerCase();
-        return from(this.usersRepository.findOne({ email: email }, { relations: ['createdRoutes', 'favouriteRoutes', 'travelledRoutes'] })).pipe(
+        return from(this.usersRepository.findOne({ email: email }, { relations: ['createdRoutes', 'favouriteRoutes', 'travelledRoutes', 'followings', 'followers'] })).pipe(
             map((user) => {
                 const { password, salt, ...securedUser } = user;
                 return securedUser;

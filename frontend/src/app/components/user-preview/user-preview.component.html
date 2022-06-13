@@ -1,0 +1,9 @@
+<div class="user-preview">
+    <div class="pic">
+        <img src="{{getProfilePicUrl()}}" alt="No preview" routerLink="/profile/user-id/{{getUserId()}}">
+    </div>
+
+    <div class="name" routerLink="/profile/user-id/{{getUserId()}}">
+        {{getName()}}
+    </div>
+</div>
