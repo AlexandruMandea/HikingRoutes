@@ -1,45 +1,41 @@
-.form-container {
-    display: flex;
-    justify-content: center;
+.settings-page {
+    padding: 2rem;
     background-color: rgb(180, 178, 226);
-    padding-top: 5em;
-    padding-bottom: 5rem;
+}
+
+.settings-div {
+    background-color: rgb(198, 196, 237);
+    padding: 2rem;
+    border-radius: 1rem;
 }
 
 h1 {
-    text-align: center;
+    color: #3a4079;
 }
 
 form {
     padding: 1.5em;
-    min-width: 20em;
     max-width: 40em;
+    margin: auto auto;
+    padding: 1rem;
 }
 
 .container {
-    padding: 4em;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: center;
-    min-width: 18em;
-    border-radius: 8px;
-    background-color: #8189d1;
-    color: rgb(231, 231, 231);
     vertical-align: middle;
 }
 
 .container>* {
     width: 80%;
-    min-width: 15em;
+    min-width: 11em;
     max-width: 35em;
 }
 
-.register-alternative-div {
-    text-align: center;
-}
 
 button {
     width: 70%;

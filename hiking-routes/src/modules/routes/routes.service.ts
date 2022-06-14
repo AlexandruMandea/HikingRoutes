@@ -22,8 +22,6 @@ export class RoutesService {
         private mapPointRepository: Repository<MapPointEntity>,
         @InjectRepository(WaypointEntity)
         private waypointRepository: Repository<WaypointEntity>,
-        // @InjectRepository(LikesEntity)
-        // private likesRepository: Repository<LikesEntity>,
     ) { }
 
     createRoute(body: CreateRouteDTO, request: Request) {
@@ -120,28 +118,6 @@ export class RoutesService {
         );
     }
 
-    // getOriginAndDestinationOfRoute(route: Route) {
-    //     return from(this.mapPointRepository.findOne({ id: route.originID })).pipe(
-    //         switchMap((origin) => {
-    //             return from(this.mapPointRepository.findOne({ id: route.destinationID })).pipe(
-    //                 map(destination => {
-    //                     return { origin, destination };
-    //                 })
-    //             )
-    //         })
-    //     );
-    // }
-
-    // getNoOfLikes(routeId: string) {
-    //     const noOfLikes = this.likesRepository
-    //         .createQueryBuilder(`likes`)
-    //         .select("COUNT(route_id)")
-    //         .where("route_id=:routeId", { routeId: routeId })
-    //         .getCount();
-
-    //     return from(noOfLikes);
-    // }
-
     addLikeToRoute(routeId: string) {
         return from(this.routeRepository.findOne({ id: routeId })).pipe(
             switchMap((route: Route) => {
@@ -178,6 +154,26 @@ export class RoutesService {
                     route.isPrivate = true;
                     return from(this.routeRepository.save(route))
                 } else throw new UnauthorizedException('You can make private only your routes!')
+            })
+        );
+    }
+
+    getTenMostAppreciatedRoutes() {
+        return from(this.routeRepository.find({ where: { isPrivate: false }, order: { noOfLikes: "DESC" }, take: 10 }));
+    }
+
+    getRoutesCount() {
+        return from(this.routeRepository.count());
+    }
+
+    getTotalDistance() {
+        return from(this.routeRepository.find()).pipe(
+            map((routes: Route[]) => {
+                const totalDistance = routes.reduce((accumulator, route) => {
+                    return accumulator + parseInt(route.distance.toString());
+                }, 0);
+
+                return { totalDistance: totalDistance };
             })
         );
     }

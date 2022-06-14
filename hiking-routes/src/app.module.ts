@@ -12,6 +12,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { JwtAuthGuard } from './modules/authentication/jwt-strategies/jwt-guard';
 import { APP_GUARD, Reflector } from '@nestjs/core';
 import { FollowersModule } from './modules/followers/followers.module';
+import { StyleRendererModule } from './modules/style-renderer/style-renderer.module';
 
 @Module({
   imports: [
@@ -30,9 +31,10 @@ import { FollowersModule } from './modules/followers/followers.module';
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     MulterModule.register({
-      dest: './images/profile_pictures',
+      dest: './images/',
     }),
-    FollowersModule],
+    FollowersModule,
+    StyleRendererModule],
   controllers: [AppController],
   providers: [
     AppService,

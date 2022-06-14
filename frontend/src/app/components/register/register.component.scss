@@ -17,20 +17,23 @@ form {
 }
 
 .container {
-    padding: 1em;
+    padding: 4em;
+    padding-left: 3em;
+    padding-right: 3em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 22em;
+    min-width: 18em;
     border-radius: 8px;
     background-color: #8189d1;
     color: rgb(231, 231, 231);
+    vertical-align: middle;
 }
 
 .container>* {
     width: 80%;
-    min-width: 20em;
+    min-width: 15em;
     max-width: 35em;
 }
 
@@ -40,6 +43,16 @@ form {
 
 button {
     width: 70%;
+    background-color: rgb(105, 101, 166);
+    border: none;
+    padding: .7rem;
+    color: whitesmoke;
+    border-radius: .4rem;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .85;
 }
 
 .error {

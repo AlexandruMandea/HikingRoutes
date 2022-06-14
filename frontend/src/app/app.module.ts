@@ -41,6 +41,7 @@ import { ProfileStatsComponent } from './components/profile-stats/profile-stats.
 import { ProfileFollowingsComponent } from './components/profile-followings/profile-followings.component';
 import { ProfileFollowersComponent } from './components/profile-followers/profile-followers.component';
 import { UserPreviewComponent } from './components/user-preview/user-preview.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { UserPreviewComponent } from './components/user-preview/user-preview.com
     ProfileFollowingsComponent,
     ProfileFollowersComponent,
     UserPreviewComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,57 @@
+<div class="settings-page">
+    <div class="settings-div">
+        <form [formGroup]="getUpdateForm()" (ngSubmit)="onUpdate()">
+
+            <div class="container">
+                <br>
+
+                <h1>Edit your info</h1>
+
+                <small class="error" *ngIf="getUpdateForm().hasError('passwordsDontMatch')">
+                    Passwords don't match.
+                </small>
+                <small class="error" *ngIf="getErrorMessage()">{{getErrorMessage()}}</small>
+
+                <br><br>
+
+                <mat-form-field>
+                    <input matInput formControlName="name" placeholder="New name">
+                    <mat-hint *ngIf="getUpdateForm().controls['name'].errors">Name must have between 2 and 25
+                        characters.
+                    </mat-hint>
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field>
+                    <input matInput formControlName="email" placeholder="New email" value="{{getUserEmail()}}">
+                    <mat-hint *ngIf="getUpdateForm().controls['email'].errors">This must be a valid email format.
+                    </mat-hint>
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field>
+                    <input matInput formControlName="password" type="password" placeholder="New password">
+                    <mat-hint *ngIf="getUpdateForm().controls['password'].errors">Password must contain at least 8
+                        characters and at least 1 number or special character.
+                    </mat-hint>
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field>
+                    <input matInput formControlName="confirmPassword" type="password"
+                        placeholder="Confirm new password">
+                    <mat-hint *ngIf="getUpdateForm().controls['confirmPassword'].errors">Please confirm password.
+                    </mat-hint>
+                </mat-form-field>
+
+                <br><br>
+
+                <button type="submit">Save changes</button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -3,7 +3,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { FollowersService } from './followers.service';
 import { Request } from 'express';
 import { catchError, map, of, tap } from 'rxjs';
-import { Follower } from './model/follower-interface';
 import { AllowAny } from '../authentication/decorators/allow-any-decorator';
 import { User } from '../users/models/user-interface';
 import { DeleteResult } from 'typeorm';

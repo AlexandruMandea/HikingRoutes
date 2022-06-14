@@ -41,4 +41,34 @@ export class CustomValidators {
             return { passwordsDontMatch: true };
         }
     }
+
+    static atLeast2WordCharsMax25OrEmpty(control: AbstractControl): ValidationErrors | null {
+        const regex = /(.*\w){2}/; // /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+
+        if ((regex.test(control.value) && control.value !== null && control.value.length <= 25) || (control.value === '')) {
+            return null;
+        }
+
+        return { nameInvalid: true };
+    }
+
+    static isEmailOrEmpty(control: AbstractControl): ValidationErrors | null {
+        const regexEamil = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if ((regexEamil.test(control.value) && control.value !== null) || (control.value === '')) {
+            return null;
+        } else {
+            return { emailInvalid: true };
+        }
+    }
+
+    static containsNumberOrSpecialCharacterAndMin8OrEmpty(control: AbstractControl): ValidationErrors | null {
+        const regex = /\d|\W/;
+
+        if ((regex.test(control.value) && control.value !== null && control.value.length >= 8) || (control.value === '')) {
+            return null;
+        } else {
+            return { passwordInvalid: true };
+        }
+    }
 }

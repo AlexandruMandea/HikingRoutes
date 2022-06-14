@@ -21,6 +21,7 @@ export enum TravelMode {
 export const baseServerUsersUrl = '/hiking-routes/users';
 export const baseServerRoutesUrl = '/hiking-routes/routes';
 export const baseServerFollowersUrl = '/hiking-routes/followers';
+export const baseServerStylesUrl = '/hiking-routes/style-renderer';
 
 export const blankProfilePicture = 'blank-profile-picture.jpg';
 

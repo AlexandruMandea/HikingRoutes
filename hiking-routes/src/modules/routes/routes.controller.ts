@@ -1,19 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RoutesService } from './routes.service';
 import { Request } from 'express';
 import { CreateRouteDTO } from './dto/create-route.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { catchError, from, map, Observable, of, tap } from 'rxjs';
 import { Route } from './models/route-interface';
-import { RouteEntity } from './models/route-entity';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { AllowAny } from '../authentication/decorators/allow-any-decorator';
-import { DeleteResult } from 'typeorm';
 
 @Controller('routes')
-@ApiTags('routes')
-@ApiBearerAuth()
 export class RoutesController {
     constructor(
         private readonly routesService: RoutesService
@@ -89,6 +84,33 @@ export class RoutesController {
     makeRoutePrivate(@Param('routeId') routeID: string, @Req() request: Request) {
         return this.routesService.makeRoutePrivate(routeID, request).pipe(
             tap((route: Route) => route),
+            catchError(error => of({ error: error.message }))
+        );
+    }
+
+    @Get('get/ten-most-appreciated')
+    @AllowAny()
+    getTenMostAppreciatedRoutes() {
+        return this.routesService.getTenMostAppreciatedRoutes().pipe(
+            tap((routes: Route[]) => routes),
+            catchError(error => of({ error: error.message }))
+        );
+    }
+
+    @Get('get/routes-count')
+    @AllowAny()
+    getRoutesCount() {
+        return this.routesService.getRoutesCount().pipe(
+            tap((count: number) => count),
+            catchError(error => of({ error: error.message }))
+        );
+    }
+
+    @Get('get/total-distance')
+    @AllowAny()
+    getTotalDistance() {
+        return this.routesService.getTotalDistance().pipe(
+            tap((count: { totalDistance: number }) => count),
             catchError(error => of({ error: error.message }))
         );
     }

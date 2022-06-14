@@ -10,6 +10,7 @@ import { catchError, from, map, mergeMap, Observable, switchMap } from 'rxjs';
 import { RegisterDTO } from './dto/register.dto';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { RoutesService } from '../routes/routes.service';
+import { UpdateUserDTO } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -146,34 +147,6 @@ export class UsersService {
         return usersByName;
     }
 
-    // getMyRoutes(request: Request) {
-    //     return this.routesService.getRoutesOfAUser(request.user['id']);
-    // }
-
-    // getMyTraveledRoutes(request: Request) {
-    //     throw new Error('Method not implemented.');
-    // }
-
-    // getMyFavouriteRoutes(request: Request) {
-
-    // }
-
-    // getMyFollowing(request: Request) {
-
-    // }
-
-    // getMyFollowers(request: Request) {
-
-    // }
-
-    // getRoutesOfAnotherUser(userId: string) {
-    //     return this.routesService.getRoutesOfAUser(userId).pipe(
-    //         map((routes: Route[]) => {
-    //             return routes.filter(route => !route.isPrivate);
-    //         })
-    //     );
-    // }
-
     updateUserProfilePicture(request: Request, imgName: string) {
         return from(this.usersRepository.update({ id: request.user['id'] }, { profilePicture: imgName }));
     }
@@ -254,8 +227,29 @@ export class UsersService {
         )
     }
 
-    updateUser(id: string, body: Partial<UserEntity>) {
-        return from(this.usersRepository.update({ id }, body));
+    updateUser(id: string, body: UpdateUserDTO) {
+        if (body.password !== '' && body.password !== undefined) {
+            return this.authenticationService.hashPassword(body.password).pipe(
+                switchMap((hashedPassword: string) => {
+                    body.password = hashedPassword;
+
+                    return from(this.usersRepository.update(id, body)).pipe(
+                        map((result: UpdateResult) => result),
+                        catchError((error) => { throw new BadRequestException('Email already used.') })
+                    )
+                })
+            )
+        }
+
+        if (!body.name) delete (body.name);
+        if (!body.email) delete (body.email);
+        if (!body.password) delete (body.password);
+
+        return from(this.usersRepository.update(id, body));
+    }
+
+    getUsersCount() {
+        return from(this.usersRepository.count());
     }
 
     deleteUser(id: string) {

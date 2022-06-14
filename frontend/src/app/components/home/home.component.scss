@@ -1,0 +1,114 @@
+.home-page {
+    background-color: rgb(180, 178, 226);
+}
+
+.cover-photo {
+    min-height: 90vh;
+    background: url(/hiking-routes/style-renderer/get/cover-photo) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.cover-elements {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+}
+
+.title {
+    position: relative;
+    font-size: 3rem;
+    min-height: 4vh;
+    padding-top: 35vh;
+    cursor: default;
+}
+
+.description {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    cursor: default;
+}
+
+.stats {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: #3a4079;
+}
+
+.material-icons {
+    position: relative;
+    right: .7rem;
+    font-size: 1.8rem;
+    transform: scale(1.8);
+}
+
+.material-icons:hover {
+    opacity: 0.75;
+}
+
+.top-routes-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 4rem;
+    color: #3a4079;
+    white-space: nowrap;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    column-gap: 4rem;
+    list-style-type: none;
+    padding: 4rem;
+}
+
+.stats {
+    display: flex;
+    column-gap: 2rem;
+    padding: 2rem;
+}
+
+.stats-info {
+    display: flex;
+    font-size: 2rem;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    background-color: rgb(198, 196, 237);
+}
+
+.icon {
+    display: flex;
+}
+
+.icon mat-icon {
+    font-size: 3.5rem;
+    padding-right: 3.15rem;
+}
+
+.icon mat-icon:hover {
+    opacity: 1;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-text span {
+    padding: .5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media(max-width: 1050px) {
+    .stats {
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+}

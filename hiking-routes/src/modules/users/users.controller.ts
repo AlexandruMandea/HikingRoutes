@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UploadedFile, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
 import { AddUserDTO } from './dto/add-user.dto';
@@ -16,10 +15,9 @@ import { editFileName, imageFileFilter } from './helpers/image-upload-helper';
 import { diskStorage } from 'multer';
 import { UpdateResult } from 'typeorm';
 import { AllowAny } from '../authentication/decorators/allow-any-decorator';
+import { UpdateUserDTO } from './dto/update-user.dto';
 
 @Controller('users')
-@ApiTags('users')
-@ApiBearerAuth()
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
@@ -94,48 +92,6 @@ export class UsersController {
         );
     }
 
-    // @Get('/get/my/created-routes')
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
-    // getMyRoutes(@Req() request: Request) {
-    //     return this.usersService.getMyRoutes(request);
-    // }
-
-    // @Get('/get/my/created-routes')
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
-    // getMyTraveledRoutes(@Req() request: Request) {
-    //     return this.usersService.getMyTraveledRoutes(request);
-    // }
-
-    // @Get('/get/my/favourite-routes')
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
-    // getMyFavouriteRoutes(@Req() request: Request) {
-    //     return this.usersService.getMyFavouriteRoutes(request);
-    // }
-
-    // @Get('/get/my/following')
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
-    // getMyFollowing(@Req() request: Request) {
-    //     return this.usersService.getMyFollowing(request);
-    // }
-
-    // @Get('/get/my/followers')
-    // @UseGuards(AuthGuard('jwt'), RolesGuard)
-    // getMyFollowers(@Req() request: Request) {
-    //     return this.usersService.getMyFollowers(request);
-    // }
-
-    // @Get('/get/id=:id/created-routes')
-    // getRoutesOfAnotherUser(@Param('id') id: string, @Req() request: Request) {
-    //     return this.usersService.getRoutesOfAnotherUser(id);
-    // }
-    // @Get('get/image/:userId')
-    // getProfilePictureOfUser(@Param('userId') userId: string) {
-    //     return this.usersService.getUserProfilePicture(userId).pipe(
-    //         tap((imageName: string) => imageName),
-    //         catchError(err => of({ error: err.message }))
-    //     );
-    // }
-
     @Post('upload-profile-picture')
     @UseGuards(AuthGuard('jwt'))
     @UseInterceptors(
@@ -203,9 +159,19 @@ export class UsersController {
 
     @Put('/update/id=:id')
     @UseGuards(AuthGuard('jwt'))
-    updateUser(@Param('id') id: string, @Body() body: AddUserDTO, @Req() request: Request) {
+    @UsePipes(ValidationPipe)
+    updateUser(@Param('id') id: string, @Body() body: UpdateUserDTO, @Req() request: Request) {
         return this.usersService.updateUser(id, body).pipe(
             tap((updateResult) => updateResult),
+            catchError(err => of({ error: err.message }))
+        );
+    }
+
+    @Get('/get/users-count')
+    @AllowAny()
+    getUsersCount() {
+        return this.usersService.getUsersCount().pipe(
+            tap((count: number) => count),
             catchError(err => of({ error: err.message }))
         );
     }

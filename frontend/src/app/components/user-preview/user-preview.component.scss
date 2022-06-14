@@ -5,6 +5,8 @@
     background-color: rgb(198, 196, 237);
     border-radius: 1rem;
     margin-top: 2rem;
+    max-width: 60rem;
+    margin: auto auto;
 }
 
 .pic img {
@@ -23,4 +25,7 @@
     margin-top: auto;
     margin-bottom: auto;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -1,10 +1,7 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, map, of, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
-import { User } from './model/user-interface';
 import { CustomValidators } from './validators/custom-validators';
 
 @Component({
@@ -58,13 +55,11 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    console.log(this.registerForm.value);
-
     this.authenticationService.register(this.registerForm.value).subscribe({
-      next: user => {
+      next: () => {
         this.router.navigate(['/login']);
       },
-      error: error => {
+      error: () => {
         this.emailAlreadyUsed = true;
       }
     });

@@ -50,4 +50,16 @@ export class UsersService {
   getFollowing(followsId: number) {
     return this.http.get<User>(`${baseServerFollowersUrl}/get-following-as-user/${followsId}`);
   }
+
+  getUsersCount() {
+    return this.http.get<number>(`${baseServerUsersUrl}/get/users-count`);
+  }
+
+  updateUser(id: string, user: User) {
+    return this.http.put<any>(`${baseServerUsersUrl}/update/id=${id}`, user);
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete<any>(`${baseServerUsersUrl}/delete/id=${id}`);
+  }
 }

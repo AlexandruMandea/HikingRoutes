@@ -1,2 +1,65 @@
-<p>home works!</p>
-<a routerLink="/browse-routes">Browse routes</a>
+<div class="home-page">
+    <div class="cover-photo">
+        <div class="cover-elements">
+            <div class="title">
+                <span class="material-icons">pedal_bike</span>
+                Hiking Routes
+            </div>
+            <div class="description">Track your outdoor journeys</div>
+        </div>
+    </div>
+
+    <div class="top-routes">
+        <div class="top-routes-title">Top 10 routes</div>
+        <ul>
+            <li *ngFor="let route of getTenMostAppreciatedRoutes()">
+                <app-route-card [route]="route"></app-route-card>
+            </li>
+        </ul>
+    </div>
+
+    <div class="stats">
+        <div class="stats-info">
+            <div class="icon">
+                <mat-icon>location_on</mat-icon>
+            </div>
+            <div class="info-text">
+                <span>
+                    Routes
+                </span>
+                <span>
+                    {{getRoutesCount()}}
+                </span>
+            </div>
+        </div>
+
+        <div class="stats-info">
+            <div class="icon">
+                <mat-icon>arrow_back</mat-icon>
+                <mat-icon>arrow_forward</mat-icon>
+            </div>
+            <div class="info-text">
+                <span>
+                    Total distance
+                </span>
+                <span>
+                    {{getTotalDistance()}} km
+                </span>
+            </div>
+        </div>
+
+        <div class="stats-info">
+            <div class="icon">
+                <mat-icon>person</mat-icon>
+            </div>
+            <div class="info-text">
+                <span>
+                    Users
+                </span>
+                <span>
+                    {{getUsersCount()}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

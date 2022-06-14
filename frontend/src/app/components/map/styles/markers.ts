@@ -1,40 +1,26 @@
 export const bikeIcon: google.maps.Icon = {
-    url: 'http://127.0.0.1:8887/markers/bike.png',
+    url: '/hiking-routes/style-renderer/get/bike-marker',
     size: new google.maps.Size(45, 45),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(22, 40),
 };
 
 export const hikerIcon: google.maps.Icon = {
-    url: 'http://127.0.0.1:8887/markers/hiker.png',
+    url: '/hiking-routes/style-renderer/get/hiker-marker',
     size: new google.maps.Size(45, 45),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(22, 40),
 };
 
 export const redMarker: google.maps.Icon = {
-    url: 'http://127.0.0.1:8887/markers/red_marker.png',//'D:\\resource_server\\hiking-routes\\markers\\red_marker.png'
+    url: '/hiking-routes/style-renderer/get/red-marker',//'D:\\resource_server\\hiking-routes\\markers\\red_marker.png'
     size: new google.maps.Size(45, 45),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(22.5, 45),
 };
 
-export const greenMarker: google.maps.Icon = {
-    url: 'http://127.0.0.1:8887/markers/green_marker.png',
-    size: new google.maps.Size(45, 45),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(14, 45),
-};
-
-export const yellownMarker: google.maps.Icon = {
-    url: 'http://127.0.0.1:8887/markers/yellow_marker.png',
-    size: new google.maps.Size(45, 45),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(23, 45),
-};
-
 export const flagIcon = {
-    url: 'http://127.0.0.1:8887/markers/red_flag_marker.png',
+    url: '/hiking-routes/style-renderer/get/red-flag-marker',
     size: new google.maps.Size(45, 45),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(14, 42),
@@ -46,8 +32,22 @@ export const flagShape: google.maps.MarkerShape = {
 };
 
 export const googleMarkerIcon: google.maps.Icon = {
-    url: 'http://127.0.0.1:8887/markers/google_marker.png',
+    url: '/hiking-routes/style-renderer/get/google-marker',
     size: new google.maps.Size(45, 45),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(14, 42),
 }
+
+// export const greenMarker: google.maps.Icon = {
+//     url: '/hiking-routes/style-renderer/get/bike-marker',
+//     size: new google.maps.Size(45, 45),
+//     origin: new google.maps.Point(0, 0),
+//     anchor: new google.maps.Point(14, 45),
+// };
+
+// export const yellownMarker: google.maps.Icon = {
+//     url: 'http://127.0.0.1:8887/markers/yellow_marker.png',
+//     size: new google.maps.Size(45, 45),
+//     origin: new google.maps.Point(0, 0),
+//     anchor: new google.maps.Point(23, 45),
+// };

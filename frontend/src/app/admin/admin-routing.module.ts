@@ -7,6 +7,16 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: OverviewComponent
+  },
+  {
+    path: 'users',//search? delete, change role
+    pathMatch: 'full',
+    component: OverviewComponent
+  },
+  {
+    path: 'routes',//search?
+    pathMatch: 'full',
+    component: OverviewComponent
   }
 ];
 

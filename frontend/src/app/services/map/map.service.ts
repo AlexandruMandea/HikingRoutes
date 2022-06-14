@@ -32,16 +32,6 @@ export class MapService {
     );
   }
 
-  getTenMostAppreciatedRoutes() {
-    const page = 1;
-    const limit = 10;
-
-    // return this.http.get<any>(`/hiking-routes/routes/get-all-routes-appreciation-asc-paginated?page=${page}&limit=${limit}`).pipe(
-    //   map(r => r),
-    //   catchError(this.handleError)
-    // );//.subscribe(); //-??????
-  }
-
   getRouteById(routeId: string) {
     return this.http.get<Route>(`${baseServerRoutesUrl}/get/id=${routeId}`).pipe(
       map(r => r),
@@ -142,6 +132,27 @@ export class MapService {
   makePrivate(route: Route) {
     return this.http.put<any>(`${baseServerRoutesUrl}/make-private/id=${route.id}`, {}).pipe(
       map(result => result),
+      catchError(this.handleError)
+    );
+  }
+
+  getTenMostAppreciatedRoutes() {
+    return this.http.get<Route[]>(`${baseServerRoutesUrl}/get/ten-most-appreciated`).pipe(
+      map((routes: Route[]) => routes),
+      catchError(this.handleError)
+    );
+  }
+
+  getRoutesCount() {
+    return this.http.get<number>(`${baseServerRoutesUrl}/get/routes-count`).pipe(
+      map((count: number) => count),
+      catchError(this.handleError)
+    );
+  }
+
+  getTotalDistance() {
+    return this.http.get<{ totalDistance: number }>(`${baseServerRoutesUrl}/get/total-distance`).pipe(
+      map((count: { totalDistance: number }) => count),
       catchError(this.handleError)
     );
   }
