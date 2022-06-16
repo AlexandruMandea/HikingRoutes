@@ -1,0 +1,131 @@
+.overview-page {
+    background-color: rgb(180, 178, 226);
+    padding: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.upper-part {
+    padding: 2rem;
+}
+
+.user-info {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    background-color: rgb(198, 196, 237);
+    border-radius: 1rem;
+
+    overflow: hidden;
+    text-overflow: hidden;
+    white-space: nowrap;
+}
+
+.profile-pic {
+    height: 12rem;
+    width: 12rem;
+    object-fit: cover;
+    border-radius: 10rem;
+    border: .4rem solid #5b639c;
+}
+
+.text {
+    font-size: 2.4rem;
+    color: #3a4079;
+    padding: 2rem;
+    width: 100%;
+}
+
+.text div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 2.4rem;
+}
+
+.user {
+    margin-top: 2rem;
+}
+
+.load-more {
+    cursor: pointer;
+    color: whitesmoke;
+    background-color: rgb(122, 119, 181);
+    max-width: 10rem;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: .7rem 2rem;
+    border-radius: .4rem;
+    margin-top: 1rem;
+    margin: 1rem auto;
+    border: none;
+}
+
+.load-more:disabled {
+    opacity: .7;
+    cursor: default;
+}
+
+// .links {
+//     display: flex;
+//     padding-left: 2rem;
+//     padding-right: 2rem;
+//     padding-bottom: 4rem;
+//     color: whitesmoke;
+//     max-width: 60rem;
+//     margin: auto auto;
+
+//     align-items: center;
+//     justify-content: center;
+//     text-align: center;
+// }
+
+// .links div {
+//     background-color: rgb(122, 119, 181);
+//     padding: 1rem;
+//     width: 25%;
+//     text-align: center;
+//     font-size: 1.2rem;
+//     cursor: pointer;
+
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+// }
+
+// .links div:hover {
+//     opacity: .85;
+// }
+
+// .users-button {
+//     border-top-left-radius: 1rem;
+//     border-bottom-left-radius: 1rem;
+//     border-right: 1px solid #565b98;
+// }
+
+// .routes-button {
+//     border-top-right-radius: 1rem;
+//     border-bottom-right-radius: 1rem;
+//     border-left: 1px solid #565b98;
+// }
+
+// @media (max-width: 600px) {
+//     .links {
+//         flex-direction: column;
+//     }
+
+//     .links div {
+//         border-radius: 1rem;
+//         width: 100%;
+//         border: none;
+//         margin-top: .5rem;
+//     }
+// }

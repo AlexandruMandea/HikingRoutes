@@ -52,12 +52,6 @@ export class ProfileRoutesComponent implements OnInit {
   }
 
   getLikedRoutes() {
-    // this.getUserById().subscribe({
-    //   next: (user: User) => {
-    //     this.user = user;
-    //   }
-    // });
-
     if (this.isThisMyProfile()) {
       let modified = (this.authService.getLoggedInUser().favouriteRoutes as Route[]).length !== ((this.user as User).favouriteRoutes as Route[]).length;
 

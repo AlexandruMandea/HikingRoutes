@@ -71,9 +71,7 @@ export class RoutesService {
     }
 
     getAllRoutes() {
-        return from(this.routeRepository.find({ relations: ['origin', 'destination', 'waypoints'] })).pipe(
-            map((routes: Route[]) => routes.filter(route => !route.isPrivate))
-        );
+        return from(this.routeRepository.find({ where: { isPrivate: false }, relations: ['origin', 'destination', 'waypoints'] }))
     }
 
     getAllRoutesPaginated(options: IPaginationOptions): Observable<Pagination<Route>> {
@@ -110,13 +108,13 @@ export class RoutesService {
         );
     }
 
-    getRoutesOfAUser(userID: string) {
-        return from(this.routeRepository.find({ relations: ['origin', 'destination', 'waypoints'] })).pipe(
-            map((routes: Route[]) => {
-                return routes.filter(route => route.createdByID === userID);
-            })
-        );
-    }
+    // getRoutesOfAUser(userID: string) {
+    //     return from(this.routeRepository.find({ relations: ['origin', 'destination', 'waypoints'] })).pipe(
+    //         map((routes: Route[]) => {
+    //             return routes.filter(route => route.createdByID === userID);
+    //         })
+    //     );
+    // }
 
     addLikeToRoute(routeId: string) {
         return from(this.routeRepository.findOne({ id: routeId })).pipe(

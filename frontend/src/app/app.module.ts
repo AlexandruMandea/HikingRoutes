@@ -108,6 +108,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     useClass: TokenInterceptorService,
     multi: true,
   },],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+  ]
 })
 export class AppModule { }

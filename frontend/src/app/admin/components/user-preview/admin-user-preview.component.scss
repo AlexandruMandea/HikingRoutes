@@ -1,0 +1,131 @@
+.user-preview {
+    display: flex;
+    padding: 1rem;
+    padding-left: 3rem;
+    background-color: rgb(198, 196, 237);
+    border-radius: 1rem;
+    margin-top: 2rem;
+    max-width: 60rem;
+    margin: auto auto;
+}
+
+.pic img {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 10rem;
+    border: .4rem solid #5b639c;
+    cursor: pointer;
+}
+
+.name {
+    padding-left: 2rem;
+    padding-right: .7rem;
+    font-size: 1.7rem;
+    color: #3a4079;
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.actions {
+    padding-top: 2.75rem;
+    padding-right: 2rem;
+    display: flex;
+}
+
+.make-admin-btn {
+    margin-right: 0;
+    float: right;
+    vertical-align: middle;
+    background-color: rgb(122, 119, 181);
+    color: whitesmoke;
+    padding: .4rem 1.5rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+    margin-top: .6rem;
+    height: 2.1rem;
+    white-space: nowrap;
+}
+
+.make-admin-btn:hover {
+    opacity: .85;
+}
+
+.make-user-btn {
+    margin-right: 0;
+    float: right;
+    vertical-align: middle;
+    background-color: rgb(122, 119, 181);
+    color: whitesmoke;
+    padding: .4rem 1.5rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+    margin-top: .6rem;
+    height: 2.1rem;
+    white-space: nowrap;
+}
+
+.make-user-btn:hover {
+    opacity: .85;
+}
+
+.delete {
+    margin-right: 0;
+    float: right;
+    vertical-align: middle;
+    background-color: rgb(189, 52, 52);
+    color: whitesmoke;
+    padding: .4rem 1.5rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+    margin-top: .6rem;
+    height: 2.1rem;
+    white-space: nowrap;
+    margin-left: .7rem;
+}
+
+.delete:hover {
+    opacity: .85;
+}
+
+@media (max-width: 980px) {
+    .user-preview {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        padding-left: 1rem
+    }
+
+    .name {
+        padding-left: 1rem;
+        text-align: left;
+    }
+
+    .actions {
+        padding-top: 1rem;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        padding-left: 2rem;
+    }
+}
+
+@media (max-width: 325px) {
+    .actions {
+        flex-direction: column;
+    }
+
+    .delete {
+        margin-left: 0;
+    }
+}

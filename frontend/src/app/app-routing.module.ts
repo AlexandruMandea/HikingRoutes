@@ -7,6 +7,7 @@ import { MapComponent } from './components/map/map.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { AdminGuard } from './services/authentication/guards/admin-guard';
 import { AuthGuard } from './services/authentication/guards/auth-guard';
 import { NotLoggedInGuard } from './services/authentication/guards/not-logged-in-guard';
 
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule),
+    canActivate: [AdminGuard]
   },
   {
     path: 'register',

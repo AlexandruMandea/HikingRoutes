@@ -1,0 +1,32 @@
+.users-page {
+    background-color: rgb(180, 178, 226);
+    padding: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.user {
+    margin-top: 2rem;
+}
+
+.load-more {
+    cursor: pointer;
+    color: whitesmoke;
+    background-color: rgb(122, 119, 181);
+    max-width: 10rem;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: .7rem 2rem;
+    border-radius: .4rem;
+    margin-top: 1rem;
+    margin: 1rem auto;
+    border: none;
+}
+
+.load-more:disabled {
+    opacity: .7;
+    cursor: default;
+}

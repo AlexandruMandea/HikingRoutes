@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { CustomValidators } from './validators/custom-validators';
 
@@ -59,7 +60,8 @@ export class RegisterComponent implements OnInit {
       next: () => {
         this.router.navigate(['/login']);
       },
-      error: () => {
+      error: (error) => {
+        console.log(error);
         this.emailAlreadyUsed = true;
       }
     });

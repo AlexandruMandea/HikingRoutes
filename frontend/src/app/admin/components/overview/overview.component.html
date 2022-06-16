@@ -1,1 +1,34 @@
-<p>admin overview works!</p>
+<div class="overview-page">
+    <div class="upper-part">
+        <div class="user-info">
+            <img class="profile-pic" src="{{getUserProfilePicture()}}" alt="No preview">
+
+            <div class="text">
+                <div>{{getUserName()}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text">
+        <div>Administration</div>
+    </div>
+
+    <div class="user" *ngFor="let user of getUsers()">
+        <app-admin-user-preview class="user-preview" [user]="user">
+        </app-admin-user-preview>
+    </div>
+
+    <button class="load-more" (click)="onLoadMore()" [disabled]="finished()">
+        Load more
+    </button>
+
+    <!-- <div class="links">
+        <div class="users-button" routerLink="users">
+            Users
+        </div>
+
+        <div class="routes-button" routerLink="routes">
+            Routes
+        </div>
+    </div> -->
+</div>

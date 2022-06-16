@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { UsersService } from 'src/app/services/users/users.service';
-import { baseServerUsersUrl, blankProfilePicture } from 'src/environments/app-constants';
+import { baseServerUsersUrl, blankProfilePicture, UserRole } from 'src/environments/app-constants';
 import { GOOGLE_API_KEY } from 'src/environments/app-secrets';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { User } from '../login/model/user-interface';
@@ -23,6 +23,7 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
   private liked = false;
   private travelled = false;
   private mine = false;
+  private amIAnAdmin = false;
 
   private readonly staticMapSettings = 'https://maps.googleapis.com/maps/api/staticmap?size=500x300&path=enc:'
   private readonly apiKey = `&key=${GOOGLE_API_KEY}`;
@@ -31,7 +32,7 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
 
   constructor(
     private mapService: MapService,
-    private autheService: AuthenticationService,
+    private authService: AuthenticationService,
     private matDialog: MatDialog,
     private usersService: UsersService,
   ) { }
@@ -40,6 +41,9 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
     this.liked = this.mapService.isRouteLikedByLoggedInUser(this.route.id as string);
     this.travelled = this.mapService.isRouteTravelledByLoggedInUser(this.route.id as string);
     this.mine = this.mapService.isRouteCreatedByLoggedInUser(this.route.id as string);
+    this.amIAnAdmin = (this.authService.isLoggedIn() &&
+      this.authService.getLoggedInUser().role == UserRole.ADMIN) ?
+      true : false;
 
     this.usersService.getUserById(this.route.createdByID as string).subscribe({
       next: (user: User) => {
@@ -133,6 +137,7 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
       }
     });
 
+    //location.reload();
     this.route.isPrivate = false;
   }
 
@@ -144,6 +149,7 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
       }
     });
 
+    //location.reload();
     this.route.isPrivate = true;
   }
 
@@ -155,15 +161,7 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
     return dialogRef.afterClosed().subscribe(answer => {
       if (answer) {
         this.mapService.deleteRoute(this.route).subscribe({
-          next: () => {
-            let user = this.autheService.getLoggedInUser() as User;
-
-            this.arrayRemove(user.createdRoutes as Route[], this.route);
-            this.arrayRemove(user.favouriteRoutes as Route[], this.route);
-            this.arrayRemove(user.travelledRoutes as Route[], this.route);
-
-            this.autheService.updateLoggedInUserFromLocalStorage(user);
-          },
+          next: () => { },
           error: (error) => { console.log(error); }
         });
       }
@@ -186,27 +184,17 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
     return '';
   }
 
-  arrayRemove(array: Route[], value: Route) {
-    let index = -1;
-
-    for (let i = 0; i < array.length; ++i) {
-      if (array[i].id === value.id) index = i;
-    }
-
-    if (index > -1) {
-      array.splice(index, 1);
-    }
-  }
-
   isLiked() { return this.liked; }
 
   isTravelled() { return this.travelled; }
 
   isMine() { return this.mine; }
 
+  amIAdmin() { return this.amIAnAdmin; }
+
   isPrivate() { return this.route.isPrivate; }
 
-  isAuthenticated() { return this.autheService.isLoggedIn(); }
+  isAuthenticated() { return this.authService.isLoggedIn(); }
 
   getRouteTitle() { return this.route.title; }
 

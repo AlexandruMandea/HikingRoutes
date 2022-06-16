@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pagination } from 'nestjs-typeorm-paginate';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { Follower } from 'src/app/components/login/model/follower-interface';
 import { User } from 'src/app/components/login/model/user-interface';
@@ -24,6 +25,26 @@ export class UsersService {
       map(user => {
         return user;
       }),
+      catchError(this.handleError)
+    );
+  }
+
+  getAllUsersPaginated(options: { page?: number, limit?: number }) {
+    options.page = options.page ? options.page : 1;
+    options.limit = options.limit ? options.limit : 5;
+
+    return this.http.get<Pagination<User>>(`${baseServerUsersUrl}/get-all-users-paginated?&page=${options.page}&limit=${options.limit}`).pipe(
+      map(u => u),
+      catchError(this.handleError)
+    );
+  }
+
+  getUsersByName(name: string, options: { page?: number, limit?: number }) {
+    options.page = options.page ? options.page : 1;
+    options.limit = options.limit ? options.limit : 5;
+
+    return this.http.get<Pagination<User>>(`${baseServerUsersUrl}/get/name=${name}?&page=${options.page}&limit=${options.limit}`).pipe(
+      map(u => u),
       catchError(this.handleError)
     );
   }

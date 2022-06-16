@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import { User } from '../login/model/user-interface';

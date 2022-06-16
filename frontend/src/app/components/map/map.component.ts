@@ -14,6 +14,7 @@ import { RouteDialogComponent } from '../route-dialog/route-dialog.component';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { MapPoint } from './model/map-point-interface';
 import { User } from '../login/model/user-interface';
+import { aubergine } from './styles/aubergine';
 
 @Component({
   selector: 'app-map',
@@ -103,12 +104,15 @@ export class MapComponent implements OnInit, AfterViewInit {
       center: this.initCenter,
       zoom: this.initZoom,
       mapTypeControlOptions: {
-        mapTypeIds: ["roadmap", "satellite", "hybrid", "terrain", "retro_map"],
+        mapTypeIds: ["roadmap", "satellite", "hybrid", "terrain", "retro_map", "aubergine"],
       },
     });
 
-    const styledMapType = new google.maps.StyledMapType(retroStyle, { name: "Retro Map" });
-    this.map.mapTypes.set("retro_map", styledMapType);
+    const styledMapTypeRetro = new google.maps.StyledMapType(retroStyle, { name: "Retro Map" });
+    this.map.mapTypes.set("retro_map", styledMapTypeRetro);
+
+    const styledMapTypeAubergine = new google.maps.StyledMapType(aubergine, { name: "Aubergine" });
+    this.map.mapTypes.set("aubergine", styledMapTypeAubergine);
 
     const bikeLayer = new google.maps.BicyclingLayer();
     bikeLayer.setMap(this.map);

@@ -38,6 +38,6 @@ export class StyleRendererController {
     @Get('get/cover-photo')
     @AllowAny()
     getCoverPhoto(@Res() res: Response) {
-        return res.sendFile('home-cover.jpeg', { root: './images/styles/wallpapers' });
+        return res.sendFile('home-cover.jpg', { root: './images/styles/wallpapers' });
     }
 }

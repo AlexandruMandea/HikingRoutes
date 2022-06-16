@@ -7,14 +7,14 @@ export class FollowerEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => UserEntity, user => user.followers)
+    @ManyToOne(() => UserEntity, user => user.followers, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'following_id' })
     following: UserEntity;
 
     @Column({ name: 'following_id' })
     followingId: string;
 
-    @ManyToOne(() => UserEntity, user => user.followings)
+    @ManyToOne(() => UserEntity, user => user.followings, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'follower_id' })
     follower: UserEntity;
 

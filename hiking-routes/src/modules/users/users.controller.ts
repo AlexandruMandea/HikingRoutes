@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UploadedFile, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, Res, UploadedFile, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
 import { AddUserDTO } from './dto/add-user.dto';
@@ -7,7 +7,7 @@ import { UserRole } from 'src/app-constants.env';
 import { Roles } from '../authentication/roles/roles-decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from '../authentication/roles/roles-guard';
-import { catchError, map, of, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { RegisterDTO } from './dto/register.dto';
 import { LoginDTO } from './dto/login.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -16,6 +16,7 @@ import { diskStorage } from 'multer';
 import { UpdateResult } from 'typeorm';
 import { AllowAny } from '../authentication/decorators/allow-any-decorator';
 import { UpdateUserDTO } from './dto/update-user.dto';
+import { Pagination } from 'nestjs-typeorm-paginate';
 
 @Controller('users')
 export class UsersController {
@@ -64,6 +65,27 @@ export class UsersController {
         );
     }
 
+    @Get('/get-all-users-paginated')
+    @Roles(UserRole.ADMIN)
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
+    getAllRoutesPaginated(@Query('page') page: number = 1, @Query('limit') limit: number = 10): Observable<Pagination<User>> {
+        limit = limit > 100 ? 100 : limit;
+        limit = limit < 0 ? 10 : limit;
+        page = page < 1 ? 1 : page;
+
+        return this.usersService.getAllUsersPaginated({ page, limit, route: 'http://localhost:3000/hiking-routes/users/get-all-users-paginated' });
+    }
+
+    @Get('/get/name=:name')
+    @AllowAny()
+    getUsersByName(@Query('page') page: number = 1, @Query('limit') limit: number = 10, @Param('name') name: string): Observable<Pagination<User>> {
+        limit = limit > 100 ? 100 : limit;
+        limit = limit < 0 ? 10 : limit;
+        page = page < 1 ? 1 : page;
+
+        return this.usersService.getUsersByName({ page, limit, route: `http://localhost:3000/hiking-routes/users/get/name=${name}` }, name);
+    }
+
     @Get('/get/id=:id')
     @AllowAny()
     getUserByID(@Param('id') id: string, @Req() request: Request) {
@@ -78,16 +100,6 @@ export class UsersController {
     getUsersByEmail(@Param('email') email: string, @Req() request: Request) {
         return this.usersService.getUserByEmail(email).pipe(
             tap((user: User) => user),
-            catchError(err => of({ error: err.message }))
-        );
-    }
-
-    @Get('/get/name=:name')
-    @AllowAny()
-    @UseGuards(AuthGuard('jwt'))
-    getUsersByName(@Param('name') name: string, @Req() request: Request) {
-        return this.usersService.getUsersByName(name).pipe(
-            tap((users: User[]) => users),
             catchError(err => of({ error: err.message }))
         );
     }

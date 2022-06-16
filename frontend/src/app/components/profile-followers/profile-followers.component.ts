@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { trace } from 'console';
 import { SharedService } from 'src/app/services/shared.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import { Follower } from '../login/model/follower-interface';

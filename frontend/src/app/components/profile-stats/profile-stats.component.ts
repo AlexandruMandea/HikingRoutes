@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { SharedService } from 'src/app/services/shared.service';
@@ -12,11 +13,9 @@ import { Route } from '../map/model/route-interface';
   templateUrl: './profile-stats.component.html',
   styleUrls: ['./profile-stats.component.scss']
 })
-export class ProfileStatsComponent implements OnInit {
+export class ProfileStatsComponent implements OnInit, OnDestroy {
   private user: User | undefined;
   private userId: string = '';
-
-  private elevator: google.maps.ElevationService = new google.maps.ElevationService();
 
   private totalDistanceRidden: number = 0;
   private totalDistanceWalked: number = 0;
@@ -24,6 +23,9 @@ export class ProfileStatsComponent implements OnInit {
   private totalDistanceClimbedByFeet: number = 0;
   private routesCreated: number = 0;
   private memberSince: string = '';
+
+  private getUserSubscription1$ = new Subscription;
+  private getUserSubscription2$ = new Subscription;
 
   constructor(
     private authService: AuthenticationService,
@@ -37,7 +39,7 @@ export class ProfileStatsComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.sharedService.getUserId();
 
-    this.getUserById().subscribe({
+    this.getUserSubscription1$ = this.getUserById().subscribe({
       next: (user: User) => {
         this.user = user;
 
@@ -47,6 +49,11 @@ export class ProfileStatsComponent implements OnInit {
         this.calculateStats();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.getUserSubscription1$.unsubscribe();
+    this.getUserSubscription2$.unsubscribe();
   }
 
 
@@ -116,7 +123,8 @@ export class ProfileStatsComponent implements OnInit {
     if (this.userId !== this.sharedService.getUserId()) {
       this.userId = this.sharedService.getUserId();
 
-      this.getUserById().subscribe({
+      this.getUserSubscription2$.unsubscribe();
+      this.getUserSubscription2$ = this.getUserById().subscribe({
         next: (user: User) => {
           this.user = user;
         }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './components/overview/overview.component';
+import { RoutesComponent } from './components/routes/routes.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {
@@ -9,15 +11,25 @@ const routes: Routes = [
     component: OverviewComponent
   },
   {
-    path: 'users',//search? delete, change role
+    path: 'users',
     pathMatch: 'full',
-    component: OverviewComponent
+    component: UsersComponent
   },
   {
-    path: 'routes',//search?
+    path: 'users/:name',
     pathMatch: 'full',
-    component: OverviewComponent
-  }
+    component: UsersComponent
+  },
+  {
+    path: 'routes',
+    pathMatch: 'full',
+    component: RoutesComponent
+  },
+  {
+    path: 'routes/:searchString',
+    pathMatch: 'full',
+    component: RoutesComponent
+  },
 ];
 
 @NgModule({

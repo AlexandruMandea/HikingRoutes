@@ -22,8 +22,6 @@ export class ProfileComponent implements OnInit {
 
   private userId: string = '';
   private user: User | undefined;
-  private profilePic = '';
-  private isMyProfile = false;
   private page = '';
 
   constructor(

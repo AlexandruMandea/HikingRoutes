@@ -90,7 +90,7 @@
                 </button>
             </span>
 
-            <button class="delete" mat-button (click)="deleteRoute()" *ngIf="isMine()">
+            <button class="delete" mat-button (click)="deleteRoute()" *ngIf="isMine()||amIAdmin()">
                 <mat-icon aria-hidden="true" aria-label="Delete">delete</mat-icon>
                 Delete
             </button>

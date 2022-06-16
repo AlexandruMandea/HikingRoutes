@@ -11,6 +11,7 @@ import { RegisterDTO } from './dto/register.dto';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { RoutesService } from '../routes/routes.service';
 import { UpdateUserDTO } from './dto/update-user.dto';
+import { IPaginationOptions, paginate, Pagination } from 'nestjs-typeorm-paginate';
 
 @Injectable()
 export class UsersService {
@@ -98,6 +99,45 @@ export class UsersService {
         return allUsers;
     }
 
+    getAllUsersPaginated(options: IPaginationOptions): Observable<Pagination<User>> {
+        return from(paginate<UserEntity>(this.usersRepository, options)).pipe(
+            map((routesPageable: Pagination<User>) => routesPageable)
+        );
+    }
+
+    getUsersByName(options: IPaginationOptions, name: string): Observable<Pagination<User>> {
+        if (name === '' || name === undefined) {
+            name = '?';
+        }
+
+        const usersByName = this.usersRepository
+            .createQueryBuilder('user')
+            .select('u')
+            .from(UserEntity, 'u')
+            .where(`u.name LIKE \'%${name}%\'`);
+
+        // .getMany())
+        // .pipe(
+        //     map((users) => {
+        //         users.forEach(function (u) {
+        //             delete u.password;
+        //             delete u.salt;
+        //         });
+        //         return users;
+        //     })
+        // );
+
+        return from(paginate<UserEntity>(usersByName, options)).pipe(
+            map((usersPageable: Pagination<User>) => {
+                usersPageable.items.forEach(user => {
+                    delete user.password;
+                    delete user.salt;
+                });
+                return usersPageable;
+            })
+        );
+    }
+
     getUserByID(id: string, request: Request | undefined) {
         return from(this.usersRepository.findOne({ id: id }, { relations: ['createdRoutes', 'favouriteRoutes', 'travelledRoutes', 'followings', 'followers'] })).pipe(
             map((user: User) => {
@@ -126,25 +166,6 @@ export class UsersService {
                 return securedUser;
             })
         );
-    }
-
-    getUsersByName(name: string) {
-        const usersByName = from(this.usersRepository
-            .createQueryBuilder('user')
-            .select('u')
-            .from(UserEntity, 'u')
-            .where(`u.name LIKE \'%${name}%\'`)
-            .getMany())
-            .pipe(
-                map((users) => {
-                    users.forEach(function (u) {
-                        delete u.password;
-                        delete u.salt;
-                    });
-                    return users;
-                })
-            );
-        return usersByName;
     }
 
     updateUserProfilePicture(request: Request, imgName: string) {

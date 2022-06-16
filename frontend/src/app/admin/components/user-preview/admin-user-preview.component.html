@@ -1,0 +1,26 @@
+<div class="user-preview">
+    <div class="pic">
+        <img src="{{getProfilePicUrl()}}" alt="No preview" routerLink="/profile/user-id/{{getUserId()}}">
+    </div>
+
+    <div class="name" routerLink="/profile/user-id/{{getUserId()}}">
+        {{getName()}}
+    </div>
+
+    <div class="actions">
+        <div class="make-admin-btn" *ngIf="isUser()" (click)="makeAdmin()">
+            <span></span>
+            <span>Make admin</span>
+        </div>
+
+        <div class="make-user-btn" *ngIf="isAdmin()" (click)="makeUser()">
+            <span></span>
+            <span>Make user</span>
+        </div>
+
+        <div class="delete" (click)="delete()">
+            <span></span>
+            <span>Delete</span>
+        </div>
+    </div>
+</div>

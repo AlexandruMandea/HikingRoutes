@@ -64,7 +64,7 @@ export class RouteEntity {
     createdByID: string;
 
     @JoinColumn({ name: 'created_by' })
-    @ManyToOne(() => UserEntity, (user) => user.createdRoutes)
+    @ManyToOne(() => UserEntity, (user) => user.createdRoutes, { onDelete: 'CASCADE' })
     createdBy: UserEntity;
 
     @Column({ name: 'is_private', default: true })
@@ -76,7 +76,7 @@ export class RouteEntity {
     @ManyToMany((type) => UserEntity, (user) => user.favouriteRoutes, { onDelete: 'CASCADE' })
     likedRoutes: Route[];
 
-    @ManyToMany((type) => UserEntity, (user) => user.travelledRoutes)
+    @ManyToMany((type) => UserEntity, (user) => user.travelledRoutes, { onDelete: 'CASCADE' })
     travelledRoutes: Route[];
 
     @CreateDateColumn({ name: 'created_at' })

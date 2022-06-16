@@ -67,7 +67,7 @@ export class MapService {
   }
 
   addRouteToFavorite(route: Route) {
-    let loggedInUser = (JSON.parse(localStorage.getItem('loggedInUser') as string) as User);
+    let loggedInUser = this.authService.getLoggedInUser() as User;
 
     (loggedInUser.favouriteRoutes as Route[]).push(route);
 
@@ -80,11 +80,9 @@ export class MapService {
   }
 
   removeRouteFromFavorite(route: Route) {
-    let loggedInUser = (JSON.parse(localStorage.getItem('loggedInUser') as string) as User);
+    let loggedInUser = this.authService.getLoggedInUser() as User;
 
-    const index = (loggedInUser.favouriteRoutes as Route[]).map((r) => { return r.id; }).indexOf(route.id);
-
-    if (index > -1) (loggedInUser.favouriteRoutes as Route[]).splice(index, 1);
+    this.arrayRemove(loggedInUser.favouriteRoutes as Route[], route);
 
     this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
 
@@ -95,7 +93,7 @@ export class MapService {
   }
 
   addToTravelled(route: Route) {
-    let loggedInUser = (JSON.parse(localStorage.getItem('loggedInUser') as string) as User);
+    let loggedInUser = this.authService.getLoggedInUser() as User;
 
     (loggedInUser.travelledRoutes as Route[]).push(route);
 
@@ -108,11 +106,9 @@ export class MapService {
   }
 
   removeFromTravelled(route: Route) {
-    let loggedInUser = (JSON.parse(localStorage.getItem('loggedInUser') as string) as User);
+    let loggedInUser = this.authService.getLoggedInUser() as User;
 
-    const index = (loggedInUser.travelledRoutes as Route[]).map((r) => { return r.id; }).indexOf(route.id);
-
-    if (index > -1) (loggedInUser.travelledRoutes as Route[]).splice(index, 1);
+    this.arrayRemove(loggedInUser.travelledRoutes as Route[], route);
 
     this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
 
@@ -123,6 +119,23 @@ export class MapService {
   }
 
   makePublic(route: Route) {
+    let loggedInUser = this.authService.getLoggedInUser() as User;
+
+    let index: number = (loggedInUser.createdRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
+    (loggedInUser.createdRoutes as Route[])[index].isPrivate = false;
+
+    index = (loggedInUser.favouriteRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
+    if (index >= 0) {
+      (loggedInUser.favouriteRoutes as Route[])[index].isPrivate = false;
+    }
+
+    index = (loggedInUser.travelledRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
+    if (index >= 0) {
+      (loggedInUser.travelledRoutes as Route[])[index].isPrivate = false;
+    }
+
+    this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
+
     return this.http.put<any>(`${baseServerRoutesUrl}/make-public/id=${route.id}`, {}).pipe(
       map(result => result),
       catchError(this.handleError)
@@ -130,6 +143,23 @@ export class MapService {
   }
 
   makePrivate(route: Route) {
+    let loggedInUser = this.authService.getLoggedInUser() as User;
+
+    let index: number = (loggedInUser.createdRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
+    (loggedInUser.createdRoutes as Route[])[index].isPrivate = true;
+
+    index = (loggedInUser.favouriteRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
+    if (index >= 0) {
+      (loggedInUser.favouriteRoutes as Route[])[index].isPrivate = true;
+    }
+
+    index = (loggedInUser.travelledRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
+    if (index >= 0) {
+      (loggedInUser.travelledRoutes as Route[])[index].isPrivate = true;
+    }
+
+    this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
+
     return this.http.put<any>(`${baseServerRoutesUrl}/make-private/id=${route.id}`, {}).pipe(
       map(result => result),
       catchError(this.handleError)
@@ -158,6 +188,14 @@ export class MapService {
   }
 
   deleteRoute(route: Route) {
+    let user = this.authService.getLoggedInUser() as User;
+
+    this.arrayRemove(user.createdRoutes as Route[], route);
+    this.arrayRemove(user.favouriteRoutes as Route[], route);
+    this.arrayRemove(user.travelledRoutes as Route[], route);
+
+    this.authService.updateLoggedInUserFromLocalStorage(user);
+
     return this.http.delete<any>(`${baseServerRoutesUrl}/delete/routeId=${route.id}`, {}).pipe(
       map(result => result),
       catchError(this.handleError)
@@ -239,6 +277,14 @@ export class MapService {
     }
 
     return metersDescended;
+  }
+
+  arrayRemove(array: Route[], value: Route) {
+    const index = array.map(r => r.id).indexOf(value.id);
+
+    if (index > -1) {
+      array.splice(index, 1);
+    }
   }
 
   decodePolyline(polyline: string) {
