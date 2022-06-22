@@ -31,11 +31,13 @@ export class RegisterComponent implements OnInit {
       ]),
       email: new FormControl('', [
         Validators.required,
-        CustomValidators.isEmail
+        CustomValidators.isEmail,
+        Validators.maxLength(250),
       ]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
+        Validators.maxLength(250),
         CustomValidators.containsNumberOrSpecialCharacter
       ]),
       confirmPassword: new FormControl('', [

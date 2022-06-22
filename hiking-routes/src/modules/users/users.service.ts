@@ -183,16 +183,16 @@ export class UsersService {
 
         return route.pipe(
             switchMap(route => {
-                return this.routesService.addLikeToRoute(routeId).pipe(
-                    switchMap(route => {
-                        return this.getUserByID(request.user['id'], request).pipe(
-                            switchMap(user => {
-                                user.favouriteRoutes.push(route);
-                                return from(this.usersRepository.save(user));
-                            })
-                        )
+                //return this.routesService.addLikeToRoute(routeId).pipe(
+                //switchMap(route => {
+                return this.getUserByID(request.user['id'], request).pipe(
+                    switchMap(user => {
+                        user.favouriteRoutes.push(route);
+                        return from(this.usersRepository.save(user));
                     })
-                );
+                )
+                //})
+                //);
             })
         )
     }
@@ -202,17 +202,17 @@ export class UsersService {
 
         return route.pipe(
             switchMap(route => {
-                return this.routesService.removeLikeFromRoute(routeId).pipe(
-                    switchMap(route => {
-                        return this.getUserByID(request.user['id'], request).pipe(
-                            switchMap(user => {
-                                const index = user.favouriteRoutes.map((r) => { return r.id; }).indexOf(route.id);
-                                if (index > -1) user.favouriteRoutes.splice(index, 1);
-                                return from(this.usersRepository.save(user));
-                            })
-                        )
+                //return this.routesService.removeLikeFromRoute(routeId).pipe(
+                //switchMap(route => {
+                return this.getUserByID(request.user['id'], request).pipe(
+                    switchMap(user => {
+                        const index = user.favouriteRoutes.map((r) => { return r.id; }).indexOf(route.id);
+                        if (index > -1) user.favouriteRoutes.splice(index, 1);
+                        return from(this.usersRepository.save(user));
                     })
-                );
+                )
+                //})
+                //);
             })
         )
     }

@@ -37,10 +37,11 @@ export class ProfileRoutesComponent implements OnInit {
 
   getCreatedRoutes() {
     if (this.isThisMyProfile()) {
-      let modified = (this.authService.getLoggedInUser().createdRoutes as Route[]).length !== ((this.user as User).createdRoutes as Route[]).length;
+      let modified = ((this.authService.getLoggedInUser().createdRoutes as Route[]).length !== ((this.user as User).createdRoutes as Route[]).length);
 
       if (modified) {
-        this.user = this.authService.getLoggedInUser()
+        //((this.user as User).createdRoutes as Route[]) = this.authService.getLoggedInUser().createdRoutes as Route[];
+        this.user = this.authService.getLoggedInUser();
       }
     }
 
@@ -56,7 +57,8 @@ export class ProfileRoutesComponent implements OnInit {
       let modified = (this.authService.getLoggedInUser().favouriteRoutes as Route[]).length !== ((this.user as User).favouriteRoutes as Route[]).length;
 
       if (modified) {
-        this.user = this.authService.getLoggedInUser()
+        //((this.user as User).favouriteRoutes as Route[]) = this.authService.getLoggedInUser().favouriteRoutes as Route[];
+        this.user = this.authService.getLoggedInUser();
       }
     }
 
@@ -68,12 +70,12 @@ export class ProfileRoutesComponent implements OnInit {
   }
 
   getTravelledRoutes() {
-
     if (this.isThisMyProfile()) {
       let modified = (this.authService.getLoggedInUser().travelledRoutes as Route[]).length !== ((this.user as User).travelledRoutes as Route[]).length;
 
       if (modified) {
-        this.user = this.authService.getLoggedInUser()
+        //((this.user as User).travelledRoutes as Route[]) = this.authService.getLoggedInUser().travelledRoutes as Route[];
+        this.user = this.authService.getLoggedInUser();
       }
     }
 

@@ -48,6 +48,11 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
     this.usersService.getUserById(this.route.createdByID as string).subscribe({
       next: (user: User) => {
         this.creator = user;
+        this.mapService.getLikesOfRoute(this.route.id as string).subscribe({
+          next: (likesCount => {
+            this.route.noOfLikes = likesCount;
+          })
+        })
       },
       error: (error) => { console.log(error); }
     });
@@ -83,7 +88,14 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
     ((this.route as Route).noOfLikes as number) += 1;
 
     this.mapService.addRouteToFavorite(this.route as Route).subscribe({
-      next: () => { },
+      next: () => {
+        this.usersService.getUserById(this.authService.getLoggedInUser().id as string).subscribe({
+          next: (user: User) => {
+            this.authService.updateLoggedInUserFromLocalStorage(user);
+          },
+          error: (error) => { console.log(error); }
+        });
+      },
       error: (error) => {
         console.log(error);
       }
@@ -97,7 +109,14 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
       ((this.route as Route).noOfLikes as number) -= 1;
 
       this.mapService.removeRouteFromFavorite(this.route as Route).subscribe({
-        next: () => { },
+        next: () => {
+          this.usersService.getUserById(this.authService.getLoggedInUser().id as string).subscribe({
+            next: (user: User) => {
+              this.authService.updateLoggedInUserFromLocalStorage(user);
+            },
+            error: (error) => { console.log(error); }
+          });
+        },
         error: (error) => {
           console.log(error);
         }
@@ -109,7 +128,14 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
 
   addToTravelled() {
     this.mapService.addToTravelled(this.route as Route).subscribe({
-      next: () => { },
+      next: () => {
+        this.usersService.getUserById(this.authService.getLoggedInUser().id as string).subscribe({
+          next: (user: User) => {
+            this.authService.updateLoggedInUserFromLocalStorage(user);
+          },
+          error: (error) => { console.log(error); }
+        });
+      },
       error: (error) => {
         console.log(error);
       }
@@ -120,7 +146,14 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
 
   removeFromTravelled() {
     this.mapService.removeFromTravelled(this.route as Route).subscribe({
-      next: () => { },
+      next: () => {
+        this.usersService.getUserById(this.authService.getLoggedInUser().id as string).subscribe({
+          next: (user: User) => {
+            this.authService.updateLoggedInUserFromLocalStorage(user);
+          },
+          error: (error) => { console.log(error); }
+        });
+      },
       error: (error) => {
         console.log(error);
       }
@@ -131,7 +164,14 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
 
   makePublic() {
     this.mapService.makePublic(this.route as Route).subscribe({
-      next: () => { },
+      next: () => {
+        this.usersService.getUserById(this.authService.getLoggedInUser().id as string).subscribe({
+          next: (user: User) => {
+            this.authService.updateLoggedInUserFromLocalStorage(user);
+          },
+          error: (error) => { console.log(error); }
+        });
+      },
       error: (error) => {
         console.log(error);
       }
@@ -143,7 +183,14 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
 
   makePrivate() {
     this.mapService.makePrivate(this.route as Route).subscribe({
-      next: () => { },
+      next: () => {
+        this.usersService.getUserById(this.authService.getLoggedInUser().id as string).subscribe({
+          next: (user: User) => {
+            this.authService.updateLoggedInUserFromLocalStorage(user);
+          },
+          error: (error) => { console.log(error); }
+        });
+      },
       error: (error) => {
         console.log(error);
       }
@@ -161,7 +208,14 @@ export class RouteCardComponent implements OnInit, AfterViewInit {
     return dialogRef.afterClosed().subscribe(answer => {
       if (answer) {
         this.mapService.deleteRoute(this.route).subscribe({
-          next: () => { },
+          next: () => {
+            this.usersService.getUserById(this.authService.getLoggedInUser().id as string).subscribe({
+              next: (user: User) => {
+                this.authService.updateLoggedInUserFromLocalStorage(user);
+              },
+              error: (error) => { console.log(error); }
+            });
+          },
           error: (error) => { console.log(error); }
         });
       }

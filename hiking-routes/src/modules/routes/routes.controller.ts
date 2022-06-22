@@ -124,12 +124,12 @@ export class RoutesController {
         );
     }
 
-    @Get('/likes:routeId')
+    @Get('/likes/:routeId')
     @AllowAny()
     getNoOfLikes(@Param('routeId') routeId: string) {
-        // return this.routesService.getNoOfLikes(routeId).pipe(
-        //     tap((noOfLikes: number) => noOfLikes),
-        //     catchError(error => of({ error: error.message }))
-        // );
+        return this.routesService.getNoOfLikes(routeId).pipe(
+            tap((noOfLikes: number) => noOfLikes),
+            catchError(error => of({ error: error.message }))
+        );
     }
 }

@@ -116,20 +116,34 @@ export class RoutesService {
     //     );
     // }
 
-    addLikeToRoute(routeId: string) {
-        return from(this.routeRepository.findOne({ id: routeId })).pipe(
-            switchMap((route: Route) => {
-                ++route.noOfLikes;
-                return from(this.routeRepository.save(route))
-            })
-        );
-    }
+    // addLikeToRoute(routeId: string) {
+    //     return from(this.routeRepository.findOne({ id: routeId })).pipe(
+    //         switchMap((route: Route) => {
+    //             ++route.noOfLikes;
+    //             return from(this.routeRepository.save(route))
+    //         })
+    //     );
+    // }
 
-    removeLikeFromRoute(routeId: string) {
-        return from(this.routeRepository.findOne({ id: routeId })).pipe(
-            switchMap((route: Route) => {
-                if (route.noOfLikes > 0) --route.noOfLikes;
-                return from(this.routeRepository.save(route))
+    // removeLikeFromRoute(routeId: string) {
+    //     return from(this.routeRepository.findOne({ id: routeId })).pipe(
+    //         switchMap((route: Route) => {
+    //             if (route.noOfLikes > 0) --route.noOfLikes;
+    //             return from(this.routeRepository.save(route))
+    //         })
+    //     );
+    // }
+
+    getNoOfLikes(routeId: string) {
+        const qb = this.routeRepository
+            .createQueryBuilder('route')
+            .loadRelationCountAndMap('route.likesCount', 'route.likedRoutes')
+            .where('route.id = :id', { id: routeId })
+            .getOne();
+
+        return from(qb).pipe(
+            map(route => {
+                return route['likesCount'];
             })
         );
     }
