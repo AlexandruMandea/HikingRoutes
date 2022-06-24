@@ -55,7 +55,7 @@ export class CustomValidators {
     static isEmailOrEmpty(control: AbstractControl): ValidationErrors | null {
         const regexEamil = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-        if ((regexEamil.test(control.value) && control.value !== null) || (control.value === '')) {
+        if ((regexEamil.test(control.value) && control.value !== null && control.value.length <= 25) || (control.value === '')) {
             return null;
         } else {
             return { emailInvalid: true };
@@ -65,7 +65,7 @@ export class CustomValidators {
     static containsNumberOrSpecialCharacterAndMin8OrEmpty(control: AbstractControl): ValidationErrors | null {
         const regex = /\d|\W/;
 
-        if ((regex.test(control.value) && control.value !== null && control.value.length >= 8) || (control.value === '')) {
+        if ((regex.test(control.value) && control.value !== null && control.value.length >= 8 && control.value.length <= 25) || (control.value === '')) {
             return null;
         } else {
             return { passwordInvalid: true };

@@ -48,6 +48,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   private metersToDescend: number = 0;
   private routeWarnings: string = '';
 
+  private directionsRoute: google.maps.DirectionsRoute | undefined;
   private routeForTemplate: Route | undefined = undefined;
 
   private canSaveRoute: boolean = false;
@@ -285,7 +286,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
         this.routeWarnings = results.routes[0].warnings[0];
 
-        this.prepareRouteForSaving(results.routes[0]);
+        this.directionsRoute = results.routes[0];
 
         // let distance = 0;
         // let duration = 0;
@@ -534,6 +535,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   openRouteDialog() {
+    this.prepareRouteForSaving(this.directionsRoute as google.maps.DirectionsRoute);
+
     const dialogRef = this.matDialog.open(RouteDialogComponent, {
       data: { routeTitle: '', isPrivate: false }
     });
