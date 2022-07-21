@@ -96,8 +96,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    //autocomplete
-
   }
 
   ngAfterViewInit(): void {
@@ -137,9 +135,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   assignEventsToElements() {
-    // autocomplete1.addListener("place_changed", viewRoute);
-    // autocomplete2.addListener("place_changed", viewRoute);
-
     this.randomMarker.addListener("click", () => {
       this.randomMarker.setMap(null);
     });
@@ -288,18 +283,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
         this.directionsRoute = results.routes[0];
 
-        // let distance = 0;
-        // let duration = 0;
-
-        // distance = this.calculateDistance(results.routes[0].legs);
-        // duration = this.calculateDuration(results.routes[0].legs);
-
-        // console.log("distance: " + distance / 1000 + " km");
-        // console.log("duration: " + parseInt((duration / 3600).toString()) + " hour(s) and " + parseInt(((duration % 3600) / 60).toString()) + " minutes");
-
-
-        //console.log(results.routes[0].overview_path[0].lat() + " " + results.routes[0].overview_path[0].lng());
-        //console.log(results.routes[0].overview_path[results.routes[0].overview_path.length - 1].lat() + " " + results.routes[0].overview_path[results.routes[0].overview_path.length - 1].lng());
       } else {
         this.canSaveRoute = false;
         window.alert("Could not find a route with the given options!");
@@ -310,9 +293,6 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.metersToDescend = 0;
       }
     });
-
-    //.catch((e) => window.alert("e"));//iar apoi sa sterg toate pct si ruta vechi?
-    //document.getElementById("form").reset();
   }
 
   codeAddress() {
@@ -543,7 +523,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     return dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        (this.createdRoute as Route).title = result.routeTitle;
+        (this.createdRoute as Route).title = result.routeTitle.replace(/\s\s+/g, ' ');
         (this.createdRoute as Route).isPrivate = result.isPrivate;
 
         this.saveRoute();

@@ -37,69 +37,6 @@ export class AuthenticationService {
         return from(bcrypt.compare(newPassword, passwortHash));
     }
 
-    // async register(query: RegisterDTO) {
-    //     const foundUser = await this.usersService.getUserByEmail(query.email);
-    //     if (foundUser) {
-    //         throw new ConflictException("Email already used!");
-    //     }
-    //     if (query.password != query.repeatPassword) {
-    //         throw new BadRequestException("Passwords don't match!");
-    //     }
-    //     delete query.repeatPassword;
-
-    //     const salt = await bcrypt.genSalt();
-    //     const password = await bcrypt.hash(query.password, salt);
-
-    //     const user = this.usersService.addUser({
-    //         ...query,
-    //         password,
-    //         salt,
-    //         role: UserRole.USER,
-    //         profilePicture: '-',
-    //         verified: false,
-    //     });
-
-    //     //this.sendVerificationEmail(user);
-
-    //     return {
-    //         message: 'Successful registration!',
-    //         user: user
-    //     };
-    // }
-
-    // async login(query: LoginDTO) {
-    //     const user: User = await this.usersService.getUserByEmail(query.email);
-    //     const isValidPassword = await bcrypt.compare(query.password, user.password);
-
-    //     if (!isValidPassword) {
-    //         throw new NotFoundException('Wrong credentials!');
-    //     }
-
-    //     const { password, salt, ...partialUser } = user;
-
-    //     const accessToken = jwt.sign(
-    //         { ...partialUser },
-    //         Secret.ACCESS_TOKEN_SECRET,
-    //         {
-    //             expiresIn: '1800s',
-    //         }
-    //     );
-
-    //     const refreshToken = jwt.sign(
-    //         { ...partialUser },
-    //         Secret.REFRESH_TOKEN_SECRET,
-    //         {
-    //             expiresIn: '7d',
-    //         }
-    //     );
-
-    //     return {
-    //         ...partialUser,
-    //         accessToken,
-    //         refreshToken,
-    //     };
-    // }
-
     async refreshToken(request: Request) {
         const partialUser = {
             _id: request.user['id'],

@@ -61,15 +61,6 @@ export class RoutesController {
         );
     }
 
-    // @Get('/get/userId=:userId')
-    // @AllowAny()
-    // getRoutesOfAUser(@Param('userId') userID: string) {
-    //     return this.routesService.getRoutesOfAUser(userID).pipe(
-    //         tap((routes: Route[]) => routes),
-    //         catchError(error => of({ error: error.message }))
-    //     );
-    // }
-
     @Put('/make-public/id=:routeId')
     @UseGuards(AuthGuard('jwt'))
     makeRoutePublic(@Param('routeId') routeID: string, @Req() request: Request) {

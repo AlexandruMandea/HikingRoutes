@@ -116,17 +116,6 @@ export class UsersService {
             .from(UserEntity, 'u')
             .where(`u.name LIKE \'%${name}%\'`);
 
-        // .getMany())
-        // .pipe(
-        //     map((users) => {
-        //         users.forEach(function (u) {
-        //             delete u.password;
-        //             delete u.salt;
-        //         });
-        //         return users;
-        //     })
-        // );
-
         return from(paginate<UserEntity>(usersByName, options)).pipe(
             map((usersPageable: Pagination<User>) => {
                 usersPageable.items.forEach(user => {

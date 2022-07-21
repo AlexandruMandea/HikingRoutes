@@ -74,12 +74,6 @@ export class MapService {
   }
 
   addRouteToFavorite(route: Route) {
-    // let loggedInUser = this.authService.getLoggedInUser() as User;
-
-    // (loggedInUser.favouriteRoutes as Route[]).push(route);
-
-    //this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
-
     return this.http.post<any>(`${baseServerUsersUrl}/add-route-to-favourites/routeId=${route.id}`, {}).pipe(
       map(r => r),
       catchError(this.handleError)
@@ -87,12 +81,6 @@ export class MapService {
   }
 
   removeRouteFromFavorite(route: Route) {
-    // let loggedInUser = this.authService.getLoggedInUser() as User;
-
-    // this.arrayRemove(loggedInUser.favouriteRoutes as Route[], route);
-
-    //this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
-
     return this.http.post<any>(`${baseServerUsersUrl}/remove-from-favourites/routeId=${route.id}`, {}).pipe(
       map(r => r),
       catchError(this.handleError)
@@ -100,12 +88,6 @@ export class MapService {
   }
 
   addToTravelled(route: Route) {
-    // let loggedInUser = this.authService.getLoggedInUser() as User;
-
-    // (loggedInUser.travelledRoutes as Route[]).push(route);
-
-    //this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
-
     return this.http.post<any>(`${baseServerUsersUrl}/add-to-travelled/routeId=${route.id}`, {}).pipe(
       map(r => r),
       catchError(this.handleError)
@@ -113,12 +95,6 @@ export class MapService {
   }
 
   removeFromTravelled(route: Route) {
-    // let loggedInUser = this.authService.getLoggedInUser() as User;
-
-    // this.arrayRemove(loggedInUser.travelledRoutes as Route[], route);
-
-    //this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
-
     return this.http.post<any>(`${baseServerUsersUrl}/remove-from-travelled/routeId=${route.id}`, {}).pipe(
       map(r => r),
       catchError(this.handleError)
@@ -126,23 +102,6 @@ export class MapService {
   }
 
   makePublic(route: Route) {
-    // let loggedInUser = this.authService.getLoggedInUser() as User;
-
-    // let index: number = (loggedInUser.createdRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
-    // (loggedInUser.createdRoutes as Route[])[index].isPrivate = false;
-
-    // index = (loggedInUser.favouriteRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
-    // if (index >= 0) {
-    //   (loggedInUser.favouriteRoutes as Route[])[index].isPrivate = false;
-    // }
-
-    // index = (loggedInUser.travelledRoutes as Route[]).map(r => r.id).indexOf(route.id) as number;
-    // if (index >= 0) {
-    //   (loggedInUser.travelledRoutes as Route[])[index].isPrivate = false;
-    // }
-
-    // this.authService.updateLoggedInUserFromLocalStorage(loggedInUser);
-
     return this.http.put<any>(`${baseServerRoutesUrl}/make-public/id=${route.id}`, {}).pipe(
       map(result => result),
       catchError(this.handleError)
@@ -210,19 +169,6 @@ export class MapService {
   }
 
   isRouteLikedByLoggedInUser(routeId: string) {
-    //let foundRoute: Route | undefined = undefined;
-
-    // this.authService.getLoggedInUser().subscribe({
-    //   next: (user: User) => {
-    //     foundRoute = ((user as User).favouriteRoutes as Route[]).find(route => {
-    //       return route.id === routeId;
-    //     });
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   }
-    // });
-
     let foundRoute = undefined;
 
     if (this.authService.isLoggedIn()) {
@@ -303,7 +249,7 @@ export class MapService {
       var b, shift = 0, result = 0;
 
       do {
-        b = polyline.charAt(index++).charCodeAt(0) - 63;//finds ascii                                                                                    //and substract it by 63
+        b = polyline.charAt(index++).charCodeAt(0) - 63;
         result |= (b & 0x1f) << shift;
         shift += 5;
       } while (b >= 0x20);

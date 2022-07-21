@@ -101,15 +101,11 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
 
             this.totalDistanceClimbedByBike += parseInt((route.totalAscending as number).toString());
 
-            //this.getRouteElevation(points, TravelMode.BICYCLING);
-
             break;
           case TravelMode.WALKING:
             this.totalDistanceWalked += parseInt((route.distance as number).toString());
 
             this.totalDistanceClimbedByFeet += parseInt((route.totalAscending as number).toString());
-
-            //this.getRouteElevation(points, TravelMode.WALKING);
 
             break
         }
@@ -131,29 +127,4 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-
-
-  // getRouteElevation(overview_path: any[], travelMode: TravelMode) {
-  //   let latlngObjects = []
-
-  //   for (let index = 0; index < overview_path.length; index++) {
-  //     latlngObjects.push({ lat: overview_path[index].latitude, lng: overview_path[index].longitude });
-  //   }
-
-  //   this.elevator.getElevationForLocations({
-  //     locations: latlngObjects,
-  //   }, (results) => {
-  //     if (results) {
-  //       switch (travelMode) {
-  //         case TravelMode.BICYCLING:
-  //           this.totalDistanceClimbedByBike += parseFloat(this.mapService.calculateTotalDistanceOfAscending(results).toString()) / 1000;
-  //           break;
-  //         case TravelMode.WALKING:
-  //           this.totalDistanceClimbedByFeet += parseFloat(this.mapService.calculateTotalDistanceOfAscending(results).toString()) / 1000;
-  //           break
-  //       }
-  //     }
-  //   });
-  // }
 }

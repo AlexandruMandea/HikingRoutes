@@ -29,7 +29,7 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string): Observable<any> {// loginForm: LoginForm 
-    this.http.get<User>(`${baseServerUsersUrl}/get/email=${email}`).pipe(
+    this.http.get<User>(`${baseServerUsersUrl}/get/email=${email}`).pipe(//pot pune in post-u de login
       map(user => {
         localStorage.setItem('loggedInUser', JSON.stringify(user));
         this.loggedInUser = user;
@@ -60,26 +60,10 @@ export class AuthenticationService {
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('accessToken');
-    //return this.accessToken != undefined;
   }
 
   getLoggedInUser() {
     return JSON.parse(localStorage.getItem('loggedInUser') as string) as User;
-
-    // return this.http.get<User>(`/hiking-routes/users/get/id=${(JSON.parse(localStorage.getItem('loggedInUser') as string) as User).id}`).pipe(
-    //   map(user => {
-    //     console.log(user);
-    //     localStorage.setItem('loggedInUser', JSON.stringify(user));
-    //     this.loggedInUser = user;
-    //     return user;
-    //   }),
-    //   catchError(this.handleError)
-    // );
-
-    // .subscribe({
-    //   next: () => { },
-    //   error: (error) => { console.log(error); }
-    // });
   }
 
   updateLoggedInUserFromLocalStorage(user: User) {

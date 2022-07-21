@@ -12,9 +12,10 @@ export class CustomValidators {
     }
 
     static hasAtLeastTwoWordCharacters(control: AbstractControl): ValidationErrors | null {
-        const regex = /(.*\w){2}/; // /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+        const regex = /^(\w).*(\w)$/; // /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+        const moreThanOneSpace = /\s{2,}/g;
 
-        if (regex.test(control.value) && control.value !== null) {
+        if (regex.test(control.value) && !moreThanOneSpace.test(control.value) && control.value !== null) {
             return null;
         } else {
             return { nameInvalid: true };
@@ -43,9 +44,10 @@ export class CustomValidators {
     }
 
     static atLeast2WordCharsMax25OrEmpty(control: AbstractControl): ValidationErrors | null {
-        const regex = /(.*\w){2}/; // /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+        const regex = /^(\w).*(\w)$/; // /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+        const moreThanOneSpace = /\s{2,}/g;
 
-        if ((regex.test(control.value) && control.value !== null && control.value.length <= 25) || (control.value === '')) {
+        if ((regex.test(control.value) && !moreThanOneSpace.test(control.value) && control.value !== null && control.value.length <= 25) || (control.value === '')) {
             return null;
         }
 

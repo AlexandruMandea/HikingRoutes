@@ -12,6 +12,7 @@
             <mat-form-field>
                 <input matInput formControlName="name" placeholder="Name">
                 <mat-hint *ngIf="getRegisterForm().controls['name'].errors">Name must have between 2 and 25 characters.
+                    No more than 1 space allowed.
                 </mat-hint>
             </mat-form-field>
             <br>

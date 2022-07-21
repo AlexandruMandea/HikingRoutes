@@ -60,10 +60,6 @@ mat-form-field {
 }
 
 select {
-    // -webkit-appearance: none;
-    // -moz-appearance: none;
-    // -ms-appearance: none;
-    // appearance: none;
     outline: 0;
     box-shadow: none;
     border: 0;
@@ -87,43 +83,9 @@ select {
 }
 
 .chart {
-    margin-top: 1rem;
+    margin-top: .7rem;
+    max-width: 27rem;
 }
-
-// select::after {
-//     content: '';
-//     border-width: 5px;
-//     border-style: solid;
-//     border-color: transparent;
-//     border-top-color: #fff;
-//     display: inline-block;
-//     position: absolute;
-//     right: .1rem;
-//     bottom: .1rem;
-//     border-radius: 2px;
-// }
-
-// select {
-//     flex: 1;
-//     padding: 0 .5rem;
-//     color: #fff;
-//     cursor: pointer;
-// }
-
-// .select::after {
-//     // content: '\25BC';
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     padding: 0 .5rem;
-//     cursor: pointer;
-//     pointer-events: none;
-//     transition: .25s all ease;
-// }
-
-// .select:hover::after {
-//     color: #fff;
-// }
 
 .map-container {
     width: 70%;
@@ -217,7 +179,6 @@ select {
     }
 
     .chart {
-        max-width: 27rem;
         margin: auto auto;
     }
 }

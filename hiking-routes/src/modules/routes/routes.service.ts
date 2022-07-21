@@ -108,32 +108,6 @@ export class RoutesService {
         );
     }
 
-    // getRoutesOfAUser(userID: string) {
-    //     return from(this.routeRepository.find({ relations: ['origin', 'destination', 'waypoints'] })).pipe(
-    //         map((routes: Route[]) => {
-    //             return routes.filter(route => route.createdByID === userID);
-    //         })
-    //     );
-    // }
-
-    // addLikeToRoute(routeId: string) {
-    //     return from(this.routeRepository.findOne({ id: routeId })).pipe(
-    //         switchMap((route: Route) => {
-    //             ++route.noOfLikes;
-    //             return from(this.routeRepository.save(route))
-    //         })
-    //     );
-    // }
-
-    // removeLikeFromRoute(routeId: string) {
-    //     return from(this.routeRepository.findOne({ id: routeId })).pipe(
-    //         switchMap((route: Route) => {
-    //             if (route.noOfLikes > 0) --route.noOfLikes;
-    //             return from(this.routeRepository.save(route))
-    //         })
-    //     );
-    // }
-
     getNoOfLikes(routeId: string) {
         const qb = this.routeRepository
             .createQueryBuilder('route')
