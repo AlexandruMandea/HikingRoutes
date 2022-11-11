@@ -56,8 +56,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('map', { read: ElementRef }) private mapElement!: ElementRef;
   @ViewChild('myChart', { read: ElementRef }) myChart: any;
 
-  private readonly initCenter = { lat: 53.65261505969125, lng: -2.207614433188918 };
-  private readonly initZoom = 6;
+  private readonly initCenter = { lat: 45.9432, lng: 24.9668 }; // GB: lat: 53.65261505969125, lng: -2.207614433188918
+  private readonly initZoom = 7;
   private readonly ENTER_KEY_CODE = 13;
   private readonly CHART_CTX: string = 'myChart';
 
