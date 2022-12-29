@@ -37,7 +37,7 @@
     "config": "^3.3.7",
     "file-type": "^17.1.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.2",
+    "mongoose": "^6.4.6",
     "mysql2": "^2.3.3",
     "nestjs-typeorm-paginate": "^4.0.1",
     "passport": "^0.5.2",
